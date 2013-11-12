@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="en"><head><title>src/both/core</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/both/core"><meta name="groc-project-path" content="src/both/core.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/both/core.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="core">core</h1>
+
+<p>Used to do basic chai/winston setup before tests run, and also to provide
+some core utility functions.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p><a href="http://requirejs.org/">RequireJS</a> boilerplate, dependencies and
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode">strict mode</a></p></div></div><div class="code"><div class="wrapper"><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">define</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;amdefine&#39;</span><span class="p">)(</span><span class="nx">module</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">define</span><span class="p">([</span><span class="s1">&#39;winston&#39;</span><span class="p">,</span> <span class="s1">&#39;util&#39;</span><span class="p">,</span> <span class="s1">&#39;chai&#39;</span><span class="p">],</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">winston</span><span class="p">,</span> <span class="nx">util</span><span class="p">,</span> <span class="nx">chai</span><span class="p">)</span> <span class="p">{</span>
+  <span class="s1">&#39;use strict&#39;</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>We check if we're on the server by looking for <code>winston.remove</code>. Then
+we set up the console transport to the output we're looking for.</p></div></div><div class="code"><div class="wrapper">  <span class="k">if</span> <span class="p">(</span><span class="nx">winston</span><span class="p">.</span><span class="nx">remove</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">winston</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">winston</span><span class="p">.</span><span class="nx">transports</span><span class="p">.</span><span class="nx">Console</span><span class="p">);</span>
+    <span class="nx">winston</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">winston</span><span class="p">.</span><span class="nx">transports</span><span class="p">.</span><span class="nx">Console</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nx">colorize</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nx">level</span><span class="o">:</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span>
+      <span class="nx">timestamp</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">});</span>
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Here we set up global <code>should</code> syntax, show callstacks and try to make
+diffs show a little less often. (I really don't want to see them all the time!)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">chai</span><span class="p">.</span><span class="nx">Assertion</span><span class="p">.</span><span class="nx">includeStack</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="nx">chai</span><span class="p">.</span><span class="nx">Assertion</span><span class="p">.</span><span class="nx">showDiff</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">should</span><span class="o">:</span> <span class="nx">chai</span><span class="p">.</span><span class="nx">should</span><span class="p">(),</span>
+    <span class="nx">expect</span><span class="o">:</span> <span class="nx">chai</span><span class="p">.</span><span class="nx">expect</span><span class="p">,</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p><code>processError</code> tries to make it a little easier to kill your test
+if a callback returns an error.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">processError</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">method</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">method</span> <span class="o">+</span> <span class="s1">&#39; returned an error: \&#39;&#39;</span> <span class="o">+</span> <span class="nx">util</span><span class="p">.</span><span class="nx">inspect</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;\&#39;&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p><code>processVar</code> ensures that a given variable is truthy - it throws an
+error if not. Also, if <code>showLogs</code> is true (which it is by default)
+you'll see the value of that variable in the log.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">showLogs</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">processVar</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">variable</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">variable</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">showLogs</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">winston</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; had the value &#39;</span> <span class="o">+</span> <span class="nx">util</span><span class="p">.</span><span class="nx">inspect</span><span class="p">(</span><span class="nx">variable</span><span class="p">));</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; was not set&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+<span class="p">});</span></div></div></div></div></body></html>

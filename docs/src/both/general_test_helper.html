@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="en"><head><title>src/both/general_test_helper</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/both/general_test_helper"><meta name="groc-project-path" content="src/both/general_test_helper.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/both/general_test_helper.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="generaltesthelper">GeneralTestHelper</h1>
+
+<p>This class makes it easier to test code using <a href="../both/general.html"><code>general</code></a>.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p><a href="http://requirejs.org/">RequireJS</a> boilerplate, dependencies and
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode">strict mode</a></p></div></div><div class="code"><div class="wrapper"><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">define</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;amdefine&#39;</span><span class="p">)(</span><span class="nx">module</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">define</span><span class="p">([</span><span class="s1">&#39;../core&#39;</span><span class="p">,</span> <span class="s1">&#39;util&#39;</span><span class="p">,</span> <span class="s1">&#39;winston&#39;</span><span class="p">,</span> <span class="s1">&#39;lodash&#39;</span><span class="p">,</span> <span class="s1">&#39;sinon&#39;</span>
+<span class="p">],</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">core</span><span class="p">,</span> <span class="nx">util</span><span class="p">,</span> <span class="nx">winston</span><span class="p">,</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">sinon</span>
+  <span class="p">)</span> <span class="p">{</span>
+  <span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+  <span class="kd">function</span> <span class="nx">GeneralTestHelper</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">options</span> <span class="o">=</span> <span class="nx">options</span> <span class="o">||</span> <span class="p">{};</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">showLogs</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">showLogs</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">winston</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">winston</span> <span class="o">||</span> <span class="nx">winston</span><span class="p">;</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p><code>checkError</code> allows you to choose to show logs on the console by setting
+<code>showLogs = true</code>.</p></div></div><div class="code"><div class="wrapper">  <span class="nx">GeneralTestHelper</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">checkError</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="nx">err</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">showLogs</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">winston</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">util</span><span class="p">.</span><span class="nx">inspect</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; - &#39;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">cb</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p><code>reset</code> wraps <code>checkError</code> in a <a href="http://sinonjs.org/docs/#spies"><code>sinon.spy</code></a>.</p></div></div><div class="code"><div class="wrapper">  <span class="nx">GeneralTestHelper</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">reset</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">checkError</span> <span class="o">=</span> <span class="nx">sinon</span><span class="p">.</span><span class="nx">spy</span><span class="p">(</span><span class="nx">GeneralTestHelper</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">checkError</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="k">return</span> <span class="nx">GeneralTestHelper</span><span class="p">;</span>
+<span class="p">});</span></div></div></div></div></body></html>

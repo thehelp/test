@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="en"><head><title>src/client/harness</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/client/harness"><meta name="groc-project-path" content="src/client/harness.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/client/harness.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="harness">harness</h1>
+
+<p>This file can be used to very quickly set up a mocha-based browser testing
+environment. Set <code>window.tests</code> to an array of your test files, and <code>window.mochaCSS</code>
+to the location of your test-specific style sheet (mocha provides a reaonable one).</p>
+
+<p>You'll need to ensure that <code>jquery</code>, <code>mocha</code>, <code>chai</code> have provided paths in
+your requirejs config. And, because neither mocha nor sinon properly behave
+in the requirejs world, this shim setup is needed:</p>
+
+<pre><code>shim: {
+  sinon: { exports: 'window.sinon' }
+  , mocha: { exports: 'global.mocha' }
+}
+</code></pre></div></div><div class="code"><div class="wrapper"><span class="kd">var</span> <span class="nx">deps</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;jquery&#39;</span><span class="p">,</span> <span class="s1">&#39;./mocha_reporter&#39;</span><span class="p">,</span> <span class="s1">&#39;mocha&#39;</span><span class="p">,</span> <span class="s1">&#39;chai&#39;</span><span class="p">];</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>You can set <code>window.coverage</code> to something truthy to turn on code coverage.
+For this, you'll need to set up paths for <code>falafel</code>, <code>blanket</code>, and <code>blanket-require</code>.
+Additional shim configuration is necessary as well:</p>
+
+<pre><code>shim: {
+  , blanket: {
+    deps: ['falafel', 'mocha']
+    , init: function(falafel) {
+      var blanket = window.blanket;
+      blanket.parseAndModify = falafel;
+      blanket.options('existingRequireJS', 'true');
+      blanket.options('filter', '/src/');
+      blanket.options('antifilter', '["/test/","/lib/"]');
+      return blanket;
+    }
+  }
+  , 'blanket-require': ['blanket']
+}
+</code></pre>
+
+<p>NOTE: for now, if running under <a href="http://phantomjs.org/">PhantomJS</a>, we don't
+load code coverage modules.</p></div></div><div class="code"><div class="wrapper"><span class="k">if</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">coverage</span> <span class="o">&amp;&amp;</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;Phantom&#39;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">deps</span> <span class="o">=</span> <span class="nx">deps</span><span class="p">.</span><span class="nx">concat</span><span class="p">([</span><span class="s1">&#39;falafel&#39;</span><span class="p">,</span> <span class="s1">&#39;blanket&#39;</span><span class="p">,</span> <span class="s1">&#39;blanket-require&#39;</span><span class="p">]);</span>
+<span class="p">}</span>
+
+<span class="nx">define</span><span class="p">(</span><span class="nx">deps</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span> <span class="nx">reporter</span><span class="p">,</span> <span class="nx">mocha</span><span class="p">)</span> <span class="p">{</span>
+  <span class="s1">&#39;use strict&#39;</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>If we're headless, we use <a href="mocha_reporter.html"><code>mocha_reporter</code></a> to save
+all test output to <code>window.results</code>, which can be played back to Mocha,
+showing the test results on the command line.</p>
+
+<p>Because <a href="https://groups.google.com/forum/#!msg/phantomjs/r0hPOmnCUpc/uxusqsl2LNoJ">PhantomJS doesn't support <code>function.bind</code></a>
+(also this <a href="https://github.com/ariya/phantomjs/issues/10522">GitHub issue</a>), we polyfill
+it if Phantom is the the user agent.</p></div></div><div class="code"><div class="wrapper">  <span class="k">if</span> <span class="p">(</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;Phantom&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">mocha</span><span class="p">.</span><span class="nx">setup</span><span class="p">({</span>
+      <span class="nx">ui</span><span class="o">:</span><span class="s1">&#39;bdd&#39;</span><span class="p">,</span>
+      <span class="nx">reporter</span><span class="o">:</span> <span class="nx">reporter</span>
+    <span class="p">});</span>
+
+    <span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">bind</span> <span class="o">=</span> <span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">bind</span> <span class="o">||</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">_this</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+      <span class="k">return</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">_this</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+      <span class="p">};</span>
+    <span class="p">};</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">mocha</span><span class="p">.</span><span class="nx">setup</span><span class="p">(</span><span class="s1">&#39;bdd&#39;</span><span class="p">);</span>
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>We throw exceptions if you don't configure things properly.</p></div></div><div class="code"><div class="wrapper">  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nb">window</span><span class="p">.</span><span class="nx">tests</span> <span class="o">===</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Tests are specified via the window.tests array&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nb">window</span><span class="p">.</span><span class="nx">mochaCSS</span> <span class="o">===</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;You need to provide the path to the mocha css file&#39;</span><span class="p">);</span>
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Finally, we load all the tests, then set <code>window.runTests</code> to a function
+that will add the necessary mocha components to the page and run all the tests.</p></div></div><div class="code"><div class="wrapper">  <span class="nx">require</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">tests</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">runTests</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="cm">/*global Event */</span>
+
+      <span class="c1">//blanket has some strange assumptions in beforeStartTestRunner;</span>
+      <span class="c1">//kicking that bit of code off manually here. And of course</span>
+      <span class="c1">//the old-school javascript engine in Phantom doesn&#39;t handle</span>
+      <span class="c1">//Event well.</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">coverage</span> <span class="o">&amp;&amp;</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;Phantom&#39;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="k">new</span> <span class="nx">Event</span><span class="p">(</span><span class="s1">&#39;load&#39;</span><span class="p">));</span>
+      <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#mocha&#39;</span><span class="p">).</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;div id=&quot;mocha&quot;/&gt;&#39;</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;link rel=&quot;stylesheet&quot; href=&quot;&#39;</span> <span class="o">+</span> <span class="nb">window</span><span class="p">.</span><span class="nx">mochaCSS</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="nx">mocha</span><span class="p">.</span><span class="nx">run</span><span class="p">();</span>
+      <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">};</span>
+  <span class="p">});</span>
+
+<span class="p">});</span></div></div></div></div></body></html>
