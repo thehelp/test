@@ -163,21 +163,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/src/client/harness.js",
-                "projectPath": "src/client/harness.js",
-                "targetPath": "src/client/harness",
-                "pageTitle": "src/client/harness",
-                "firstHeader": {
-                  "type": "heading",
-                  "data": {
-                    "level": 1,
-                    "title": "harness",
-                    "slug": "harness",
-                    "isFileHeader": true
-                  },
-                  "depth": 1
-                },
-                "title": "harness"
+                "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/src/client/config.js",
+                "projectPath": "src/client/config.js",
+                "targetPath": "src/client/config",
+                "pageTitle": "src/client/config",
+                "title": "config"
               },
               "depth": 3,
               "outline": []
@@ -193,11 +183,21 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/src/client/index.js",
-                "projectPath": "src/client/index.js",
-                "targetPath": "src/client/index",
-                "pageTitle": "src/client/index",
-                "title": "index"
+                "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/src/client/harness.js",
+                "projectPath": "src/client/harness.js",
+                "targetPath": "src/client/harness",
+                "pageTitle": "src/client/harness",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "harness",
+                    "slug": "harness",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "harness"
               },
               "depth": 3,
               "outline": []
@@ -231,6 +231,76 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "folder",
+              "data": {
+                "path": "src/client/shims",
+                "title": "shims"
+              },
+              "depth": 3,
+              "children": [
+                {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/src/client/shims/util_shim.js",
+                    "projectPath": "src/client/shims/util_shim.js",
+                    "targetPath": "src/client/shims/util_shim",
+                    "pageTitle": "src/client/shims/util_shim",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "util_shim",
+                        "slug": "util-shim",
+                        "isFileHeader": true
+                      },
+                      "depth": 1
+                    },
+                    "title": "util_shim"
+                  },
+                  "depth": 4,
+                  "outline": []
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/src/client/shims/winston_shim.js",
+                    "projectPath": "src/client/shims/winston_shim.js",
+                    "targetPath": "src/client/shims/winston_shim",
+                    "pageTitle": "src/client/shims/winston_shim",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "winston_shim",
+                        "slug": "winston-shim",
+                        "isFileHeader": true
+                      },
+                      "depth": 1
+                    },
+                    "title": "winston_shim"
+                  },
+                  "depth": 4,
+                  "outline": []
+                }
+              ]
             }
           ]
         }, {
@@ -325,6 +395,46 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           ]
         }
       ]
+    }, {
+      "type": "file",
+      "data": {
+        "language": {
+          "nameMatchers": [".js"],
+          "pygmentsLexer": "javascript",
+          "multiLineComment": ["/*", "*", "*/"],
+          "singleLineComment": ["//"],
+          "ignorePrefix": "}",
+          "foldPrefix": "^",
+          "name": "JavaScript"
+        },
+        "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/thehelp-test.js",
+        "projectPath": "thehelp-test.js",
+        "targetPath": "thehelp-test",
+        "pageTitle": "thehelp-test",
+        "title": "thehelp-test"
+      },
+      "depth": 1,
+      "outline": []
+    }, {
+      "type": "file",
+      "data": {
+        "language": {
+          "nameMatchers": [".js"],
+          "pygmentsLexer": "javascript",
+          "multiLineComment": ["/*", "*", "*/"],
+          "singleLineComment": ["//"],
+          "ignorePrefix": "}",
+          "foldPrefix": "^",
+          "name": "JavaScript"
+        },
+        "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/thehelp-test-coverage.js",
+        "projectPath": "thehelp-test-coverage.js",
+        "targetPath": "thehelp-test-coverage",
+        "pageTitle": "thehelp-test-coverage",
+        "title": "thehelp-test-coverage"
+      },
+      "depth": 1,
+      "outline": []
     }
   ];
 

@@ -1,4 +1,6 @@
 
+'use strict';
+
 var test = require('thehelp-test');
 
 var expect = test.core.expect;
@@ -24,4 +26,4 @@ describe('both/thehelp-test', function() {
     expect(test).to.have.property('chai');
   });
 
-})
+});

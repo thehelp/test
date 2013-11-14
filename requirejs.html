@@ -1,0 +1,22 @@
+<html>
+<head>
+</head>
+<body>
+
+</body>
+<script src='lib/vendor/require.js'></script>
+<script src='dist/requirejs/thehelp-test.min.js'></script>
+<script>
+  requirejs.config({
+    paths: {
+      winston: 'src/client/shims/winston_shim',
+      util: 'src/client/shims/util_shim'
+    }
+  })
+
+  require(['thehelp-test', 'util'], function(test) {
+    console.log(test);
+  });
+
+</script>
+</html>

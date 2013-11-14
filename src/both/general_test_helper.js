@@ -7,9 +7,9 @@ if (typeof define !== 'function') {
   var define = require('amdefine')(module);
 }
 
-define(['./core', 'util', 'winston', 'lodash', 'sinon'
+define(['./core', 'util', 'winston', 'sinon'
 ],
-  function(core, util, winston, _, sinon
+  function(core, util, winston, sinon
   ) {
   'use strict';
 

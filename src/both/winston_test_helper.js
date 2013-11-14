@@ -11,9 +11,9 @@ if (typeof define !== 'function') {
   var define = require('amdefine')(module);
 }
 
-define(['./core', 'sinon', 'util', 'winston', 'lodash'
+define(['./core', 'sinon', 'util', 'winston'
 ],
-  function(core, sinon, util, winston, _
+  function(core, sinon, util, winston
   ) {
   'use strict';
 
@@ -34,13 +34,14 @@ define(['./core', 'sinon', 'util', 'winston', 'lodash'
   WinstonTestHelper.prototype.reset = function() {
     var _this = this;
 
-    _(methods).forEach(function(method) {
-      _this[method] = sinon.spy(function(text) {
+    /*jshint loopfunc: true, forin: false */
+    for (var method in methods) {
+      this[method] = sinon.spy(function(text) {
         if (_this.showLogs) {
           _this.winston[method](text);
         }
       });
-    });
+    }
   };
 
   return WinstonTestHelper;

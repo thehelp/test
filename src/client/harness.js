@@ -13,7 +13,7 @@ in the requirejs world, this shim setup is needed:
       , mocha: { exports: 'global.mocha' }
     }
 */
-var deps = ['jquery', './mocha_reporter', 'mocha', 'chai'];
+var deps = ['jquery', 'thehelp-test'];
 
 /*
 You can set `window.coverage` to something truthy to turn on code coverage.
@@ -39,10 +39,10 @@ NOTE: for now, if running under [PhantomJS](http://phantomjs.org/), we don't
 load code coverage modules.
 */
 if (window.coverage && navigator.userAgent.indexOf('Phantom') < 0) {
-  deps = deps.concat(['falafel', 'blanket', 'blanket-require']);
+  deps = deps.concat(['thehelp-test-coverage']);
 }
 
-define(deps, function($, reporter, mocha) {
+define(deps, function($, test) {
   'use strict';
 
   /*
@@ -55,9 +55,9 @@ define(deps, function($, reporter, mocha) {
   it if Phantom is the the user agent.
   */
   if (navigator.userAgent.indexOf('Phantom') >= 0) {
-    mocha.setup({
+    test.mocha.setup({
       ui:'bdd',
-      reporter: reporter
+      reporter: test.mochReporter
     });
 
     Function.prototype.bind = Function.prototype.bind || function (target) {
@@ -68,7 +68,7 @@ define(deps, function($, reporter, mocha) {
     };
   }
   else {
-    mocha.setup('bdd');
+    test.mocha.setup('bdd');
   }
 
   // We throw exceptions if you don't configure things properly.
@@ -97,7 +97,7 @@ define(deps, function($, reporter, mocha) {
         $('body').append('<div id="mocha"/>');
         $('head').append('<link rel="stylesheet" href="' + window.mochaCSS + '">');
       }
-      mocha.run();
+      test.mocha.run();
       return true;
     };
   });

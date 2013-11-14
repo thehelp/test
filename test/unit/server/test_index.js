@@ -1,5 +1,6 @@
 
-var util = require('util');
+'use strict';
+
 var test = require('thehelp-test');
 
 var expect = test.core.expect;
@@ -14,4 +15,4 @@ describe('server/thehelp-test', function() {
     expect(test).to.have.property('HeadlessMocha');
   });
 
-})
+});
