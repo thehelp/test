@@ -9,7 +9,7 @@ var GruntConfig = require('thehelp-project').GruntConfig;
 var optimize = function(grunt, name, empty, standalone, options) {
   var requirejsMin = _.cloneDeep(options);
   requirejsMin.name = name;
-  requirejsMin.out = 'dist/requirejs/' + name + '.min.js';
+  requirejsMin.out = 'dist/' + name + '.min.js';
   if (empty) {
     _.forEach(empty, function(module) {
       requirejsMin.paths[module] = 'empty:';
@@ -19,7 +19,7 @@ var optimize = function(grunt, name, empty, standalone, options) {
 
   var requirejs = _.cloneDeep(requirejsMin);
   requirejs.optimize = 'none';
-  requirejs.out = 'dist/requirejs/' + name + '.js';
+  requirejs.out = 'dist/' + name + '.js';
   grunt.config('requirejs.' + name + '-requirejs.options', requirejs);
 
   if (standalone) {
