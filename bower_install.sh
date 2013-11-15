@@ -24,14 +24,8 @@ echo "Mocha"
 cp ${BOWER}/mocha/mocha.js ${LIB}
 cp ${BOWER}/mocha/mocha.css ${LIB}
 
-echo "RequireJS (building... uses java)"
-pushd ${BOWER}/requirejs/dist > /dev/null
-rm -rf build
-mkdir build
-java -jar ../../r.js/lib/closure/compiler.jar --js ../require.js --js_output_file build/require.min.js
-popd > /dev/null
+echo "RequireJS"
 cp ${BOWER}/requirejs/require.js ${LIB}
-cp ${BOWER}/requirejs/dist/build/require.min.js ${LIB}
 
 echo "Sinon (building... uses ruby and juicer gem)"
 echo "    NOTE: it will update the date every build"

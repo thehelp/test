@@ -2,12 +2,10 @@
   "name": "thehelp-test",
   "version": "1.0.0",
   "dependencies": {
-    "async": "0.2.5",
     "chai": "1.8.1",
     "jquery": "1.10.2",
     "mocha": "1.14.0",
     "requirejs": "2.1.9",
-    "r.js": "2.1.9",
     "sinon": "1.7.3"
   }
 }
