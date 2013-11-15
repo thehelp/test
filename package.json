@@ -16,15 +16,18 @@
   "devDependencies": {
     "blanket": "https://github.com/NiKnight/blanket/tarball/changes",
     "grunt": "0.4.1",
+    "grunt-contrib-copy": "0.4.1",
     "grunt-requirejs": "0.4.0",
     "thehelp-project": "git+ssh://git@infra:thehelp-project#v1.0.3"
   },
+
   "scripts": {
     "blanket": {
       "data-cover-only": "src",
       "data-cover-never": "['lib/','node_modules/','test/','src/client']"
     }
   },
+
   "author": "Scott Nonnenberg",
   "repository": {
     "type": "git",

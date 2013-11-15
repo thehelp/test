@@ -46,6 +46,21 @@ module.exports = function(grunt) {
   optimize(grunt, 'thehelp-test', ['winston', 'util'], true, options);
   optimize(grunt, 'thehelp-test-coverage', ['winston', 'util', 'mocha'], false, options);
 
-  grunt.registerTask('dist', ['requirejs']);
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.config('copy', {
+    mocha: {
+      files: {
+        'dist/mocha.css': ['lib/vendor/mocha.css']
+      }
+    },
+    harness: {
+      files: {
+        'dist/harness.js': ['src/client/harness.js']
+      }
+    }
+
+  });
+
+  grunt.registerTask('dist', ['requirejs', 'copy']);
   grunt.registerTask('default', ['test', 'staticanalysis', 'doc', 'dist']);
 };
