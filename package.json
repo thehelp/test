@@ -16,6 +16,7 @@
   "devDependencies": {
     "blanket": "https://github.com/NiKnight/blanket/tarball/changes",
     "grunt": "0.4.1",
+    "grunt-requirejs": "0.4.0",
     "thehelp-project": "git+ssh://git@infra:thehelp-project#v1.0.3"
   },
   "scripts": {
