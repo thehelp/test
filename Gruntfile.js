@@ -6,7 +6,7 @@
 var _ = require('lodash');
 var GruntConfig = require('thehelp-project').GruntConfig;
 
-var optimize = function(grunt, name, empty, standalone, options) {
+var optimize = function(options, grunt, name, empty, standalone) {
   var requirejsMin = _.cloneDeep(options);
   requirejsMin.name = name;
   requirejsMin.out = 'dist/' + name + '.min.js';
@@ -43,8 +43,8 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-requirejs');
   var options = require('./src/client/config');
-  optimize(grunt, 'thehelp-test', ['winston', 'util'], true, options);
-  optimize(grunt, 'thehelp-test-coverage', ['winston', 'util', 'mocha'], false, options);
+  optimize(options, grunt, 'thehelp-test', ['winston', 'util']);
+  optimize(options, grunt, 'thehelp-test-coverage', ['thehelp-test', 'winston', 'util', 'mocha']);
 
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.config('copy', {
@@ -60,6 +60,39 @@ module.exports = function(grunt) {
     }
 
   });
+
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.config('connect', {
+    test: {
+      options: {
+        base: '.',
+        port: 3001,
+      }
+    },
+    forever: {
+      options: {
+        base: '.',
+        port: 3000,
+        keepalive: true
+      }
+    }
+  });
+
+  grunt.loadNpmTasks('grunt-mocha');
+  grunt.config('mocha', {
+    requirejs: {
+      options: {
+        urls: [
+          'http://localhost:3001/test/interactive/requirejs.html',
+          'http://localhost:3001/test/interactive/standalone.html'
+        ],
+        run: false,
+        reporter: 'Spec'
+      }
+    }
+  });
+
+  grunt.registerTask('client-test', ['dist', 'connect:test', 'mocha']);
 
   grunt.registerTask('dist', ['requirejs', 'copy']);
   grunt.registerTask('default', ['test', 'staticanalysis', 'doc', 'dist']);

@@ -13,7 +13,6 @@ in the requirejs world, this shim setup is needed:
       , mocha: { exports: 'global.mocha' }
     }
 */
-var deps = ['jquery', 'thehelp-test'];
 
 /*
 You can set `window.coverage` to something truthy to turn on code coverage.
@@ -38,44 +37,13 @@ Additional shim configuration is necessary as well:
 NOTE: for now, if running under [PhantomJS](http://phantomjs.org/), we don't
 load code coverage modules.
 */
-if (window.coverage && navigator.userAgent.indexOf('Phantom') < 0) {
-  deps = deps.concat(['thehelp-test-coverage']);
-}
 
-define(deps, function($, test) {
-  'use strict';
-
-  /*
-  If we're headless, we use [`mocha_reporter`](mocha_reporter.html) to save
-  all test output to `window.results`, which can be played back to Mocha,
-  showing the test results on the command line.
-
-  Because [PhantomJS doesn't support `function.bind`](https://groups.google.com/forum/#!msg/phantomjs/r0hPOmnCUpc/uxusqsl2LNoJ)
-  (also this [GitHub issue](https://github.com/ariya/phantomjs/issues/10522)), we polyfill
-  it if Phantom is the the user agent.
-  */
-  if (navigator.userAgent.indexOf('Phantom') >= 0) {
-    test.mocha.setup({
-      ui:'bdd',
-      reporter: test.mochReporter
-    });
-
-    Function.prototype.bind = Function.prototype.bind || function (target) {
-      var _this = this;
-      return function () {
-        return _this.apply(target, arguments);
-      };
-    };
-  }
-  else {
-    test.mocha.setup('bdd');
-  }
-
+var loadTests = function($, mocha) {
   // We throw exceptions if you don't configure things properly.
   if (typeof window.tests === 'undefined') {
     throw new Error('Tests are specified via the window.tests array');
   }
-  if (typeof window.mochaCSS === 'undefined') {
+  if (typeof window.mochaCss === 'undefined') {
     throw new Error('You need to provide the path to the mocha css file');
   }
 
@@ -95,11 +63,63 @@ define(deps, function($, test) {
       }
       if (!$('#mocha').length) {
         $('body').append('<div id="mocha"/>');
-        $('head').append('<link rel="stylesheet" href="' + window.mochaCSS + '">');
+        $('head').append('<link rel="stylesheet" href="' + window.mochaCss + '">');
       }
-      test.mocha.run();
+      mocha.run();
       return true;
     };
+
+    if (window.PHANTOMJS) {
+      require(['../../node_modules/grunt-mocha/phantomjs/bridge'], function() {
+        mocha.run();
+      });
+    }
+    else if (!window.waitToRun) {
+      window.runTests();
+    }
   });
+};
+
+var setupMocha = function(mocha, headlessReporter) {
+  /*
+  If we're headless, we use [`mocha_reporter`](mocha_reporter.html) to save
+  all test output to `window.results`, which can be played back to Mocha,
+  showing the test results on the command line.
+
+  Because [PhantomJS doesn't support `function.bind`](https://groups.google.com/forum/#!msg/phantomjs/r0hPOmnCUpc/uxusqsl2LNoJ)
+  (also this [GitHub issue](https://github.com/ariya/phantomjs/issues/10522)), we polyfill
+  it if Phantom is the the user agent.
+  */
+  if (navigator.userAgent.indexOf('Phantom') >= 0) {
+    mocha.setup({
+      ui:'bdd',
+      reporter: headlessReporter
+    });
+
+    Function.prototype.bind = Function.prototype.bind || function (target) {
+      var _this = this;
+      return function () {
+        return _this.apply(target, arguments);
+      };
+    };
+  }
+  else {
+    mocha.setup('bdd');
+  }
+};
+
+define(['jquery', 'thehelp-test'], function($, test) {
+  'use strict';
+
+  setupMocha(test.mocha, test.mochaReporter);
+
+  if (window.coverage && navigator.userAgent.indexOf('Phantom') < 0) {
+    require(['thehelp-test-coverage'], function(coverage) {
+      loadTests($, test.mocha);
+    });
+  }
+  else {
+    loadTests($, test.mocha);
+  }
 
 });

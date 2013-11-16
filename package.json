@@ -16,7 +16,9 @@
   "devDependencies": {
     "blanket": "https://github.com/NiKnight/blanket/tarball/changes",
     "grunt": "0.4.1",
+    "grunt-contrib-connect": "0.5.0",
     "grunt-contrib-copy": "0.4.1",
+    "grunt-mocha": "0.4.1",
     "grunt-requirejs": "0.4.0",
     "thehelp-project": "git+ssh://git@infra:thehelp-project#v1.0.3"
   },

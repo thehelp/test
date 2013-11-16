@@ -1,7 +1,6 @@
 
-(function(e){if("function"==typeof bootstrap)bootstrap("index.js",e);else if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else if("undefined"!=typeof ses){if(!ses.ok())return;ses.makeIndexjs=e}else"undefined"!=typeof window?window.indexjs=e():global.indexjs=e()})(function(){var define,ses,bootstrap,module,exports;
-return (function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof require=="function"&&require;if(!s&&o)return o(n,!0);if(r)return r(n,!0);throw new Error("Cannot find module '"+n+"'")}var u=t[n]={exports:{}};e[n][0].call(u.exports,function(t){var r=e[n][1][t];return i(r?r:t)},u,u.exports)}return t[n].exports}var r=typeof require=="function"&&require;for(var s=0;s<n.length;s++)i(n[s]);return i})({1:[function(require,module,exports){
-(function(){/*
+!function(e){"object"==typeof exports?module.exports=e():"function"==typeof define&&define.amd?define('falafel',e):"undefined"!=typeof window?window.falafel=e():"undefined"!=typeof global?global.falafel=e():"undefined"!=typeof self&&(self.falafel=e())}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/*
   Copyright (C) 2012 Ariya Hidayat <ariya.hidayat@gmail.com>
   Copyright (C) 2012 Mathias Bynens <mathias@qiwi.be>
   Copyright (C) 2012 Joost-Wim Boekesteijn <joost-wim@boekesteijn.nl>
@@ -45,13 +44,13 @@ parseStatement: true, parseSourceElement: true */
 
     // Universal Module Definition (UMD) to support AMD, CommonJS/Node.js,
     // Rhino, and plain browser loading.
-    if (typeof define === 'function' && define.amd) {
-        define(['exports'], factory);
-    } else if (typeof exports !== 'undefined') {
+    // if (typeof define === 'function' && define.amd) {
+    //     define(['exports'], factory);
+    // } else if (typeof exports !== 'undefined') {
         factory(exports);
-    } else {
-        factory((root.esprima = {}));
-    }
+    // } else {
+    //     factory((root.esprima = {}));
+    // }
 }(this, function (exports) {
     
 
@@ -3910,7 +3909,6 @@ parseStatement: true, parseSourceElement: true */
 }));
 /* vim: set sw=4 ts=4 et tw=80 : */
 
-})()
 },{}],2:[function(require,module,exports){
 var parse = require('esprima').parse;
 var objectKeys = Object.keys || function (obj) {
@@ -4007,7 +4005,8 @@ function insertHelpers (node, parent, chunks) {
     };
 }
 
-},{"esprima":1}]},{},[2])(2)
+},{"esprima":1}]},{},[2])
+(2)
 });
 ;
 var inBrowser = typeof window !== 'undefined' && this === window;
@@ -4684,9 +4683,9 @@ _blanket.extend({
     };
     blanket.beforeStartTestRunner({
         callback: function(){
-            if (!blanket.options("existingRequireJS")){
+            // if (!blanket.options("existingRequireJS")){
                 oldRun(oldCallback);
-            }
+            // }
             mocha.run = oldRun;
         }
     });
@@ -5026,16 +5025,17 @@ define("blanket", ["falafel","mocha"], (function (global) {
        fn = function (falafel) {
           var blanket = window.blanket;
           blanket.parseAndModify = falafel;
-          blanket.options('existingRequireJS', 'true');
           blanket.options('filter', '/src/');
           blanket.options('antifilter', '["/test/","/lib/"]');
-          /* blanket.options('debug', true); */
+          // blanket.options('debug', true);
           return blanket;
         };
         ret = fn.apply(global, arguments);
         return ret;
     };
 }(this)));
+
+blanket.options('existingRequireJS', true);
 
 (function(_blanket){
 _blanket.extend({
@@ -5370,11 +5370,13 @@ define("blanket-require", function(){});
 
 
 define('thehelp-test-coverage',[
+  'thehelp-test',
   'falafel',
   'blanket',
   'blanket-require'
 ],
   function(
+    test,
     falafel,
     blanket,
     blanketRequire

@@ -1,10 +1,12 @@
 
 define([
+  'thehelp-test',
   'falafel',
   'blanket',
   'blanket-require'
 ],
   function(
+    test,
     falafel,
     blanket,
     blanketRequire

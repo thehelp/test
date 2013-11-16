@@ -30,10 +30,9 @@ define(function() {
         init: function(falafel) {
           var blanket = window.blanket;
           blanket.parseAndModify = falafel;
-          blanket.options('existingRequireJS', 'true');
           blanket.options('filter', '/src/');
           blanket.options('antifilter', '["/test/","/lib/"]');
-          /* blanket.options('debug', true); */
+          // blanket.options('debug', true);
           return blanket;
         }
       },
