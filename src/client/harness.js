@@ -70,7 +70,7 @@ var loadTests = function($, mocha) {
     };
 
     if (window.PHANTOMJS) {
-      require(['../../node_modules/grunt-mocha/phantomjs/bridge'], function() {
+      require(['grunt-mocha-bridge'], function() {
         mocha.run();
       });
     }
