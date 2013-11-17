@@ -79,8 +79,7 @@ module.exports = function(grunt) {
     requirejs: {
       options: {
         urls: [
-          'http://localhost:3001/test/interactive/requirejs.html',
-          'http://localhost:3001/test/interactive/standalone.html'
+          'http://localhost:3001/test/integration/requirejs.html'
         ],
         run: false,
         reporter: 'Spec'
@@ -88,7 +87,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('client-test', ['dist', 'connect:test', 'mocha']);
+  grunt.registerTask('client-test', ['connect:test', 'mocha']);
 
   grunt.registerTask('dist', ['requirejs', 'copy']);
   grunt.registerTask('default', ['test', 'staticanalysis', 'doc', 'dist']);
