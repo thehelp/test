@@ -65,7 +65,7 @@ module.exports = function(grunt) {
         port: 3001,
       }
     },
-    forever: {
+    keepalive: {
       options: {
         base: '.',
         port: 3000,
