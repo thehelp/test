@@ -48,17 +48,13 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.config('copy', {
-    mocha: {
+    dist: {
       files: {
-        'dist/mocha.css': ['lib/vendor/mocha.css']
-      }
-    },
-    harness: {
-      files: {
-        'dist/harness.js': ['src/client/harness.js']
+        'dist/mocha.css': ['lib/vendor/mocha.css'],
+        'dist/harness.js': ['src/client/harness.js'],
+        'dist/grunt-mocha-bridge.js': ['node_modules/grunt-mocha/phantomjs/bridge.js']
       }
     }
-
   });
 
   grunt.loadNpmTasks('grunt-contrib-connect');
