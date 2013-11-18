@@ -1,3 +1,5 @@
+// # thehelp-test
+// This file pulls in everything needed for testing on the client side.
 
 define([
   'src/both/core',

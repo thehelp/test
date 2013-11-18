@@ -1,66 +1,46 @@
 /*
 # harness
 This file can be used to very quickly set up a mocha-based browser testing
-environment. Set `window.tests` to an array of your test files, and `window.mochaCSS`
-to the location of your test-specific style sheet (mocha provides a reaonable one).
+environment. Set `window.tests` to an array of your test files, and `window.mochaCss`
+to the location of your test-specific style sheet (mocha provides a reasonable one).
 
-You'll need to ensure that `jquery`, `mocha`, `chai` have provided paths in
-your requirejs config. And, because neither mocha nor sinon properly behave
-in the requirejs world, this shim setup is needed:
+You can set `window.coverage` to something truthy to turn on code coverage. _NOTE:
+for now, if running under [PhantomJS](http://phantomjs.org/), we don't
+load code coverage modules._
 
-    shim: {
-      sinon: { exports: 'window.sinon' }
-      , mocha: { exports: 'global.mocha' }
+Lastly, this harness can work with `grunt-mocha`; you'll just need to set the path
+for one additional component in requirejs.
+
+These are the components used:
+
+    paths: {
+      'thehelp-test': '<your path>',
+      'thehelp-test-coverage': '<required for code coverage>',
+      'grunt-mocha-bridge': '<required if using with grunt-mocha'
     }
 */
 
 /*
-You can set `window.coverage` to something truthy to turn on code coverage.
-For this, you'll need to set up paths for `falafel`, `blanket`, and `blanket-require`.
-Additional shim configuration is necessary as well:
+`loadTests` actually requires your test files, then installs `window.runTests()`,
+which adds the mocha div to your page and runs the tests.
 
-    shim: {
-      , blanket: {
-        deps: ['falafel', 'mocha']
-        , init: function(falafel) {
-          var blanket = window.blanket;
-          blanket.parseAndModify = falafel;
-          blanket.options('existingRequireJS', 'true');
-          blanket.options('filter', '/src/');
-          blanket.options('antifilter', '["/test/","/lib/"]');
-          return blanket;
-        }
-      }
-      , 'blanket-require': ['blanket']
-    }
-
-NOTE: for now, if running under [PhantomJS](http://phantomjs.org/), we don't
-load code coverage modules.
+You can set `window.waitToRun` to something truthy to keep tests from running
+automatically.
 */
-
 var loadTests = function($, mocha) {
-  // We throw exceptions if you don't configure things properly.
+
+  //We throw exceptions if you don't configure things properly.
   if (typeof window.tests === 'undefined') {
     throw new Error('Tests are specified via the window.tests array');
   }
   if (typeof window.mochaCss === 'undefined') {
-    throw new Error('You need to provide the path to the mocha css file');
+    throw new Error('You need to provide the path to the mocha css file with (window.mochaCss)');
   }
 
-  // Finally, we load all the tests, then set `window.runTests` to a function
-  // that will add the necessary mocha components to the page and run all the tests.
+  //Finally, we load all the tests, then set `window.runTests` to a function
+  //that will add the necessary mocha components to the page and run all the tests.
   require(window.tests, function() {
     window.runTests = function() {
-      /*global Event */
-
-      //blanket has some strange assumptions in beforeStartTestRunner;
-      //kicking that bit of code off manually here. And of course
-      //the old-school javascript engine in Phantom doesn't handle
-      //Event well.
-
-      if (window.coverage && navigator.userAgent.indexOf('Phantom') < 0) {
-        window.dispatchEvent(new Event('load'));
-      }
       if (!$('#mocha').length) {
         $('body').append('<div id="mocha"/>');
         $('head').append('<link rel="stylesheet" href="' + window.mochaCss + '">');
@@ -80,22 +60,25 @@ var loadTests = function($, mocha) {
   });
 };
 
-var setupMocha = function(mocha, headlessReporter) {
-  /*
-  If we're headless, we use [`mocha_reporter`](mocha_reporter.html) to save
-  all test output to `window.results`, which can be played back to Mocha,
-  showing the test results on the command line.
+/*
+`setupMocha` prepares Mocha for tests to be loaded. It must be run before
+we run test-defining code. If we don't, `describe` and `it` will not yet be defined.
 
-  Because [PhantomJS doesn't support `function.bind`](https://groups.google.com/forum/#!msg/phantomjs/r0hPOmnCUpc/uxusqsl2LNoJ)
-  (also this [GitHub issue](https://github.com/ariya/phantomjs/issues/10522)), we polyfill
-  it if Phantom is the the user agent.
-  */
+If we're headless, we use [`mocha_reporter`](mocha_reporter.html) to save
+all test output to `window.results`, which can be played back to Mocha with
+[`MochaHeadless`](../server/headless_mocha.html) and shown on the command
+line.
+*/
+var setupMocha = function(mocha, headlessReporter) {
   if (navigator.userAgent.indexOf('Phantom') >= 0) {
     mocha.setup({
       ui:'bdd',
       reporter: headlessReporter
     });
 
+    //Because PhantomJS doesn't support function.bind we polyfill it
+    //https://groups.google.com/forum/#!msg/phantomjs/r0hPOmnCUpc/uxusqsl2LNoJ
+    //https://github.com/ariya/phantomjs/issues/10522
     Function.prototype.bind = Function.prototype.bind || function (target) {
       var _this = this;
       return function () {
@@ -108,6 +91,11 @@ var setupMocha = function(mocha, headlessReporter) {
   }
 };
 
+/*
+This is the actual code that runs when you `require()` this harness file.
+We first setup Mocha, then pull in code coverage-related components, then
+pull in the tests. The order is indeed important. :0)
+*/
 define(['jquery', 'thehelp-test'], function($, test) {
   'use strict';
 

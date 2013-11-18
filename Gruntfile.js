@@ -15,12 +15,12 @@ var optimize = function(options, grunt, name, empty, standalone) {
       requirejsMin.paths[module] = 'empty:';
     });
   }
-  grunt.config('requirejs.' + name + '-requirejs-min.options', requirejsMin);
+  grunt.config('requirejs.' + name + '-min.options', requirejsMin);
 
   var requirejs = _.cloneDeep(requirejsMin);
   requirejs.optimize = 'none';
   requirejs.out = 'dist/' + name + '.js';
-  grunt.config('requirejs.' + name + '-requirejs.options', requirejs);
+  grunt.config('requirejs.' + name + '.options', requirejs);
 
   if (standalone) {
     var standaloneMin = _.cloneDeep(options);

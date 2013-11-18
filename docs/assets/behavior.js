@@ -123,6 +123,36 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/src/both/something.js",
+                "projectPath": "src/both/something.js",
+                "targetPath": "src/both/something",
+                "pageTitle": "src/both/something",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "something",
+                    "slug": "something",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "something"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/src/both/winston_test_helper.js",
                 "projectPath": "src/both/winston_test_helper.js",
                 "targetPath": "src/both/winston_test_helper",
@@ -167,6 +197,16 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "src/client/config.js",
                 "targetPath": "src/client/config",
                 "pageTitle": "src/client/config",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "config",
+                    "slug": "config",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
                 "title": "config"
               },
               "depth": 3,
@@ -411,6 +451,16 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "projectPath": "thehelp-test.js",
         "targetPath": "thehelp-test",
         "pageTitle": "thehelp-test",
+        "firstHeader": {
+          "type": "heading",
+          "data": {
+            "level": 1,
+            "title": "thehelp-test",
+            "slug": "thehelp-test",
+            "isFileHeader": true
+          },
+          "depth": 1
+        },
         "title": "thehelp-test"
       },
       "depth": 1,
@@ -431,6 +481,16 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "projectPath": "thehelp-test-coverage.js",
         "targetPath": "thehelp-test-coverage",
         "pageTitle": "thehelp-test-coverage",
+        "firstHeader": {
+          "type": "heading",
+          "data": {
+            "level": 1,
+            "title": "thehelp-test-coverage",
+            "slug": "thehelp-test-coverage",
+            "isFileHeader": true
+          },
+          "depth": 1
+        },
         "title": "thehelp-test-coverage"
       },
       "depth": 1,

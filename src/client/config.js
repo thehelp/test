@@ -1,3 +1,6 @@
+// # config
+// This file supplies needed configuration to requirejs both
+// during client-side testing scenarios and during optimization.
 
 'use strict';
 
@@ -25,6 +28,12 @@ define(function() {
     shim: {
       sinon: { exports: 'window.sinon' },
       mocha: { exports: 'global.mocha' },
+
+      // This is what holds all the blanket-based code coverage stuff together.
+      // First, `falafel` is node module I browserified to work in the browser. Then
+      // I modified blanket itself to allow `falafel` to be injected via `blanket.parseAndModify`.
+      // Then I set some default filters on blanket, only instrumenting things under 'src/`
+      // and never things under 'test/' and '/lib'.
       blanket: {
         deps: ['falafel', 'mocha'],
         init: function(falafel) {
@@ -32,7 +41,6 @@ define(function() {
           blanket.parseAndModify = falafel;
           blanket.options('filter', '/src/');
           blanket.options('antifilter', '["/test/","/lib/"]');
-          // blanket.options('debug', true);
           return blanket;
         }
       },
