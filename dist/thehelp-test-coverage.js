@@ -5027,7 +5027,6 @@ define("blanket", ["falafel","mocha"], (function (global) {
           blanket.parseAndModify = falafel;
           blanket.options('filter', '/src/');
           blanket.options('antifilter', '["/test/","/lib/"]');
-          // blanket.options('debug', true);
           return blanket;
         };
         ret = fn.apply(global, arguments);
@@ -5368,6 +5367,9 @@ _blanket.extend({
 
 define("blanket-require", function(){});
 
+// # thehelp-test-coverage
+// This is the file that pulls in all the right components
+// to enable code coverage for a requirejs-based mocha test run.
 
 define('thehelp-test-coverage',[
   'thehelp-test',

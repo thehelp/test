@@ -14356,6 +14356,8 @@ define("mocha", (function (global) {
     };
 }(this)));
 
+// # thehelp-test
+// This file pulls in everything needed for testing on the client side.
 
 define('thehelp-test',[
   'src/both/core',
