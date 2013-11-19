@@ -1,6 +1,5 @@
 {
   "name": "thehelp-test",
-  "version": "1.0.0",
   "dependencies": {
     "chai": "1.8.1",
     "jquery": "1.10.2",
