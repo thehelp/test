@@ -34,8 +34,11 @@ define(['./core', 'sinon', 'util', 'winston'
   WinstonTestHelper.prototype.reset = function() {
     var _this = this;
 
-    /*jshint loopfunc: true, forin: false */
-    for (var method in methods) {
+    /*jshint loopfunc: true */
+    var max = methods.length;
+    for (var index = 0; index < max; index += 1) {
+      var method = methods[index];
+
       this[method] = sinon.spy(function(text) {
         if (_this.showLogs) {
           _this.winston[method](text);
