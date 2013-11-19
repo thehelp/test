@@ -10,9 +10,14 @@ if (typeof define !== 'function') {
 
 define(function() {
 
+  var baseUrl = '.';
+  if (typeof window !== 'undefined') {
+    baseUrl = window.host || '/';
+  }
+
   return {
+    baseUrl: baseUrl,
     name: 'thehelp-test',
-    baseUrl: '.',
     paths: {
       chai: 'lib/vendor/chai',
       sinon: 'lib/vendor/sinon',

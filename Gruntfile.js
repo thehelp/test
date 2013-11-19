@@ -25,12 +25,13 @@ module.exports = function(grunt) {
 
   config.registerCopy({
     'dist/mocha.css': 'lib/vendor/mocha.css',
-    'dist/harness.js': 'src/client/harness.js',
+    'dist/thehelp-test-harness.js': 'src/client/harness.js',
     'dist/grunt-mocha-bridge.js': 'node_modules/thehelp-project/node_modules/grunt-mocha/phantomjs/bridge.js'
   });
 
   config.registerMocha([
-    'http://localhost:3001/test/integration/requirejs.html'
+    'http://localhost:3001/test/integration/dev.html',
+    'http://localhost:3001/test/integration/dist.html'
   ]);
 
   grunt.registerTask('client-test', ['connect:test', 'mocha']);

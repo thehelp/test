@@ -13,12 +13,12 @@
     'test/unit/both/test_general_test_helper',
     'test/unit/both/test_winston_test_helper'
   ];
-  window.mochaCss = '../../dist/mocha.css';
-  window.entrypoint = '../../dist/harness.js';
+  window.mochaCss = '../../lib/vendor/mocha.css';
+  window.entrypoint = '../../src/client/harness.js';
   window.coverage = true;
   // window.waitToRun = true;
 
 </script>
-<script data-main='client/setup.js' src="../../lib/vendor/require.js"></script>
+<script data-main='client/dev_setup.js' src="../../lib/vendor/require.js"></script>
 
 </html>
