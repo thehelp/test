@@ -26,7 +26,7 @@ module.exports = function(grunt) {
   config.registerCopy({
     'dist/mocha.css': 'lib/vendor/mocha.css',
     'dist/harness.js': 'src/client/harness.js',
-    'dist/grunt-mocha-bridge.js': 'node_modules/grunt-mocha/phantomjs/bridge.js'
+    'dist/grunt-mocha-bridge.js': 'node_modules/thehelp-project/node_modules/grunt-mocha/phantomjs/bridge.js'
   });
 
   config.registerMocha([
