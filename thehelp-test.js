@@ -5,7 +5,7 @@ define([
   'src/both/core',
   'src/both/general_test_helper',
   'src/both/winston_test_helper',
-  'src/client/mocha_reporter.js',
+  'src/client/mocha_reporter',
   'sinon',
   'mocha',
   'chai'
