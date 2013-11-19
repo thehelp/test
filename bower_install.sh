@@ -24,10 +24,6 @@ cat node_modules/blanket/src/blanketRequire.js >> ${LIB}blanket-require.js
 echo "Chai"
 cp ${BOWER}/chai/chai.js ${LIB}
 
-echo "JQuery"
-cp ${BOWER}/jquery/jquery.js ${LIB}
-cp ${BOWER}/jquery/jquery.min.js ${LIB}
-
 echo "Mocha"
 cp ${BOWER}/mocha/mocha.js ${LIB}
 cp ${BOWER}/mocha/mocha.css ${LIB}
