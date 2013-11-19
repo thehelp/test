@@ -10,8 +10,7 @@ requirejs.config({
 
     jquery: 'lib/vendor/jquery',
     winston: 'src/client/shims/winston_shim',
-    util: 'src/client/shims/util_shim',
-    mocha: 'lib/vendor/mocha'
+    util: 'src/client/shims/util_shim'
   }
 });
 
