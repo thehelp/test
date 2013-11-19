@@ -48,6 +48,16 @@ define(['jquery', 'thehelp-test'], function($, test) {
     //that will add the necessary mocha components to the page and run all the tests.
     require(window.tests, function() {
       window.runTests = function() {
+        /*global Event */
+
+       //blanket has some strange assumptions in beforeStartTestRunner;
+       //kicking that bit of code off manually here. And of course
+       //the old-school javascript engine in Phantom doesn't handle
+       //Event well.
+       if (window.coverage && navigator.userAgent.indexOf('Phantom') < 0) {
+         window.dispatchEvent(new Event('load'));
+       }
+
         if (!$('#mocha').length) {
           $('body').append('<div id="mocha"/>');
           $('head').append('<link rel="stylesheet" href="' + window.mochaCss + '">');
