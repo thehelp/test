@@ -19,12 +19,12 @@ for one additional component in requirejs.</p>
   'grunt-mocha-bridge': '&lt;required if using with grunt-mocha'
 }
 </code></pre></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>We first setup Mocha, then pull in code coverage-related components, then
-pull in the tests. The order is indeed important. :0)</p></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;jquery&#39;</span><span class="p">,</span> <span class="s1">&#39;thehelp-test&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span> <span class="nx">test</span><span class="p">)</span> <span class="p">{</span>
+pull in the tests. The order is indeed important. :0)</p></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;thehelp-test&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">test</span><span class="p">)</span> <span class="p">{</span>
   <span class="s1">&#39;use strict&#39;</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p><code>loadTests</code> actually requires your test files, then installs <code>window.runTests()</code>,
 which adds the mocha div to your page and runs the tests.</p>
 
 <p>You can set <code>window.waitToRun</code> to something truthy to keep tests from running
-automatically.</p></div></div><div class="code"><div class="wrapper">  <span class="kd">var</span> <span class="nx">loadTests</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span> <span class="nx">mocha</span><span class="p">)</span> <span class="p">{</span>
+automatically.</p></div></div><div class="code"><div class="wrapper">  <span class="kd">var</span> <span class="nx">loadTests</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">mocha</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="c1">//We throw exceptions if you don&#39;t configure things properly.</span>
     <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nb">window</span><span class="p">.</span><span class="nx">tests</span> <span class="o">===</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span>
@@ -38,9 +38,28 @@ automatically.</p></div></div><div class="code"><div class="wrapper">  <span cla
     <span class="c1">//that will add the necessary mocha components to the page and run all the tests.</span>
     <span class="nx">require</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">tests</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="nb">window</span><span class="p">.</span><span class="nx">runTests</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#mocha&#39;</span><span class="p">).</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
-          <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;div id=&quot;mocha&quot;/&gt;&#39;</span><span class="p">);</span>
-          <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;link rel=&quot;stylesheet&quot; href=&quot;&#39;</span> <span class="o">+</span> <span class="nb">window</span><span class="p">.</span><span class="nx">mochaCss</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&#39;</span><span class="p">);</span>
+        <span class="cm">/*global Event */</span>
+
+        <span class="c1">//blanket has some strange assumptions in beforeStartTestRunner;</span>
+        <span class="c1">//kicking that bit of code off manually here. And of course</span>
+        <span class="c1">//the old-school javascript engine in Phantom doesn&#39;t handle</span>
+        <span class="c1">//Event well.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">coverage</span> <span class="o">&amp;&amp;</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;Phantom&#39;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nb">window</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="k">new</span> <span class="nx">Event</span><span class="p">(</span><span class="s1">&#39;load&#39;</span><span class="p">));</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;mocha&#39;</span><span class="p">))</span> <span class="p">{</span>
+          <span class="c1">//Doing this without jquery to reduce dependencies... :0)</span>
+          <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+          <span class="kd">var</span> <span class="nx">div</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+          <span class="nx">div</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;mocha&#39;</span><span class="p">);</span>
+          <span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">div</span><span class="p">);</span>
+
+          <span class="kd">var</span> <span class="nx">head</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+          <span class="kd">var</span> <span class="nx">link</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;link&#39;</span><span class="p">);</span>
+          <span class="nx">link</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;rel&#39;</span><span class="p">,</span> <span class="s1">&#39;stylesheet&#39;</span><span class="p">);</span>
+          <span class="nx">link</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">,</span> <span class="nb">window</span><span class="p">.</span><span class="nx">mochaCss</span><span class="p">);</span>
+          <span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">link</span><span class="p">);</span>
         <span class="p">}</span>
         <span class="nx">mocha</span><span class="p">.</span><span class="nx">run</span><span class="p">();</span>
         <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
@@ -87,11 +106,11 @@ line.</p></div></div><div class="code"><div class="wrapper">  <span class="kd">v
 
   <span class="k">if</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">coverage</span> <span class="o">&amp;&amp;</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;Phantom&#39;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">require</span><span class="p">([</span><span class="s1">&#39;thehelp-test-coverage&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nx">loadTests</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span> <span class="nx">test</span><span class="p">.</span><span class="nx">mocha</span><span class="p">);</span>
+      <span class="nx">loadTests</span><span class="p">(</span><span class="nx">test</span><span class="p">.</span><span class="nx">mocha</span><span class="p">);</span>
     <span class="p">});</span>
   <span class="p">}</span>
   <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">loadTests</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span> <span class="nx">test</span><span class="p">.</span><span class="nx">mocha</span><span class="p">);</span>
+    <span class="nx">loadTests</span><span class="p">(</span><span class="nx">test</span><span class="p">.</span><span class="nx">mocha</span><span class="p">);</span>
   <span class="p">}</span>
 
 <span class="p">});</span></div></div></div></div></body></html>

@@ -55,7 +55,7 @@ define(['thehelp-test'], function(test) {
         //the old-school javascript engine in Phantom doesn't handle
         //Event well.
         if (window.coverage && navigator.userAgent.indexOf('Phantom') < 0) {
-         window.dispatchEvent(new Event('load'));
+          window.dispatchEvent(new Event('load'));
         }
 
         if (!document.getElementById('mocha')) {
