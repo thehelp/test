@@ -50,13 +50,13 @@ define(['thehelp-test'], function(test) {
       window.runTests = function() {
         /*global Event */
 
-       //blanket has some strange assumptions in beforeStartTestRunner;
-       //kicking that bit of code off manually here. And of course
-       //the old-school javascript engine in Phantom doesn't handle
-       //Event well.
-       if (window.coverage && navigator.userAgent.indexOf('Phantom') < 0) {
-         window.dispatchEvent(new Event('load'));
-       }
+        //blanket has some strange assumptions in beforeStartTestRunner;
+        //kicking that bit of code off manually here. And of course
+        //the old-school javascript engine in Phantom doesn't handle
+        //Event well.
+        if (window.coverage && navigator.userAgent.indexOf('Phantom') < 0) {
+          window.dispatchEvent(new Event('load'));
+        }
 
         if (!document.getElementById('mocha')) {
           //Doing this without jquery to reduce dependencies... :0)
