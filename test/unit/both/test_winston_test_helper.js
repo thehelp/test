@@ -13,27 +13,27 @@ define(['thehelp-test'], function(test) {
     var helper;
 
     before(function() {
-      helper = new WinstonTestHelper();
+      helper = new WinstonTestHelper({showLogs: true});
     });
 
     it('should have property error', function() {
       expect(helper).to.have.property('error');
+      helper.error('error text');
     });
 
     it('should have property info', function() {
       expect(helper).to.have.property('info');
+      helper.info('info text');
     });
 
     it('should have property warn', function() {
       expect(helper).to.have.property('warn');
-    });
-
-    it('should have property debug', function() {
-      expect(helper).to.have.property('debug');
+      helper.warn('warn text');
     });
 
     it('should have property verbose', function() {
       expect(helper).to.have.property('verbose');
+      helper.verbose('verbose text');
     });
 
   });

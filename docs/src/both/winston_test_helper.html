@@ -25,21 +25,17 @@ to show the logs on the console.</p></div></div></div><div class="segment"><div 
     <span class="k">this</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
   <span class="p">}</span>
 
-  <span class="kd">var</span> <span class="nx">methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;verbose&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;debug&#39;</span><span class="p">,</span> <span class="s1">&#39;warn&#39;</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">];</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p><code>reset</code> can be used at any time to reset the <code>sinon.spy</code> for
+  <span class="kd">var</span> <span class="nx">methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;verbose&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;warn&#39;</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">];</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p><code>reset</code> can be used at any time to reset the <code>sinon.spy</code> for
 each of the logging methods.</p></div></div><div class="code"><div class="wrapper">  <span class="nx">WinstonTestHelper</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">reset</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">_this</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-    <span class="cm">/*jshint loopfunc: true */</span>
-    <span class="kd">var</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">methods</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">index</span> <span class="o">&lt;</span> <span class="nx">max</span><span class="p">;</span> <span class="nx">index</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">var</span> <span class="nx">method</span> <span class="o">=</span> <span class="nx">methods</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
-
-      <span class="k">this</span><span class="p">[</span><span class="nx">method</span><span class="p">]</span> <span class="o">=</span> <span class="nx">sinon</span><span class="p">.</span><span class="nx">spy</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">methods</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">method</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">_this</span><span class="p">[</span><span class="nx">method</span><span class="p">]</span> <span class="o">=</span> <span class="nx">sinon</span><span class="p">.</span><span class="nx">spy</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">_this</span><span class="p">.</span><span class="nx">showLogs</span><span class="p">)</span> <span class="p">{</span>
           <span class="nx">_this</span><span class="p">.</span><span class="nx">winston</span><span class="p">[</span><span class="nx">method</span><span class="p">](</span><span class="nx">text</span><span class="p">);</span>
         <span class="p">}</span>
       <span class="p">});</span>
-    <span class="p">}</span>
+    <span class="p">});</span>
   <span class="p">};</span>
 
   <span class="k">return</span> <span class="nx">WinstonTestHelper</span><span class="p">;</span>

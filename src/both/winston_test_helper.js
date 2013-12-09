@@ -27,24 +27,20 @@ define(['./core', 'sinon', 'util', 'winston'
     this.reset();
   }
 
-  var methods = ['verbose', 'info', 'debug', 'warn', 'error'];
+  var methods = ['verbose', 'info', 'warn', 'error'];
 
   // `reset` can be used at any time to reset the `sinon.spy` for
   // each of the logging methods.
   WinstonTestHelper.prototype.reset = function() {
     var _this = this;
 
-    /*jshint loopfunc: true */
-    var max = methods.length;
-    for (var index = 0; index < max; index += 1) {
-      var method = methods[index];
-
-      this[method] = sinon.spy(function(text) {
+    methods.forEach(function(method) {
+      _this[method] = sinon.spy(function(text) {
         if (_this.showLogs) {
           _this.winston[method](text);
         }
       });
-    }
+    });
   };
 
   return WinstonTestHelper;
