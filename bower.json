@@ -2,7 +2,7 @@
   "name": "thehelp-test",
   "dependencies": {
     "chai": "1.8.1",
-    "mocha": "1.14.0",
+    "mocha": "1.15.1",
     "requirejs": "2.1.9",
     "sinon": "1.7.3"
   }
