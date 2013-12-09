@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="en"><head><title>index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="index"><meta name="groc-project-path" content="README.md"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">README.md</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="thehelp-test">thehelp-test</h1>
+
+<p>Gives you standard testing tools for both the client and the server in one package, including client-side test coverage under requirejs via blanket and come custom modificiations.</p>
+
+<h2 id="features">Features</h2>
+
+<ul>
+<li>Include a number of core testing libraries: <code>mocha</code>, <code>sinon</code>, and <code>chai</code> available on the client and on the server</li>
+<li>dist/thehelp-test-harness.js to make it easy to test on the client side, whether in the browser, under raw PhantomJS, or via the <code>grunt-mocha</code> task</li>
+<li><code>WinstonTestHelper</code> and <code>GeneralTestHelper</code> to customize logging behavior during tests, as well as verify that calls were made as expected</li>
+<li><code>Headless</code> and <code>HeadlessMocha</code> classes to make it easy to call directly into PhantomJS</li>
+</ul>
+
+<h2 id="jump-in">Jump in!</h2>
+
+<h3 id="install">Install</h3>
+
+<p>Include the project in your dependencies:</p>
+
+<pre><code>"thehelp-test": "git+ssh://git@infra:thehelp-test#v1.0.0"
+</code></pre>
+
+<h3 id="usage">Usage</h3>
+
+<p>To write tests very quickly, just pull in the project and start using it!</p>
+
+<pre><code>var test = require('thehelp-test');
+var core = test.core;
+var expect = core.expect;
+var sinon = test.sinon;
+var WinstonTestHelper = test.WinstonTestHelper;
+
+core.processError('method', err); // throws err if its truthy
+var stub = sinon.stub();
+
+var winston = new WinstonTestHelper({showLogs: false});
+winston.info('blah');
+expect(winston.info).to.have.propety(callCount, 1);
+</code></pre>
+
+<p>This same code also works on the client, assuming that you've set things up properly. youll need to set up requirejs paths for several depenencies:</p>
+
+<ul>
+<li>thehelp-test</li>
+<li>thehelp-test-coverage if you'd like to measure test coverage</li>
+<li>grunt-mocha-bridge if you'd like to run tests with the <code>grunt-mocha</code> task</li>
+</ul>
+
+<p>And you'll also need to set a few variabless:</p>
+
+<ul>
+<li><code>window.tests</code> is an array of test files to be pulled in via requirejs.</li>
+<li><code>window.mochaCss</code> is a path to the mocha css file, which makes its HTML test output look nice</li>
+<li><code>window.waitToRun</code> can be set to prevent the tests from running after successful load</li>
+<li><code>window.coverage</code>, if set to true, turns on <code>blanket</code>-based code coverage (it instruments your code as it's loaded via requirejs)</li>
+</ul>
+
+<h2 id="history">History</h2>
+
+<h3 id="201">2.0.1</h3>
+
+<ul>
+<li>Updating to latest version of <code>mocha</code></li>
+<li>Fixing improper method wireup in <code>WinstonTestHelper</code></li>
+<li>All 'generic' dependencies (<code>lodash</code>, <code>amdefine</code>, <code>winston</code>) now specified either as 1.x or 0.1.x to allow full flexibility to top-level project</li>
+</ul>
+
+<h3 id="200">2.0.0</h3>
+
+<ul>
+<li>Rename 'dist/harness.js' to 'dist/thehelp-test-harness.js'</li>
+<li>Remove <code>jquery</code> dependency</li>
+<li>Fixing <code>mocha_reporter</code> inclusing in <code>dist/thehelp-test</code></li>
+</ul>
+
+<h3 id="102">1.0.2</h3>
+
+<ul>
+<li>Fix to harness.js to ensure that blanket code coverage works</li>
+<li>Fix loop through methods in <code>WinstonTestHelper</code></li>
+</ul>
+
+<h3 id="101">1.0.1</h3>
+
+<ul>
+<li>Pulling 'dist/grunt-mocha-bridge.js' from node_modules dir under 'thehelp-project'</li>
+</ul>
+
+<h3 id="100">1.0.0</h3>
+
+<ul>
+<li>Initial release - sinon, mocha, chai all included. Client-side files under dist/</li>
+</ul>
+
+<h2 id="license">License</h2>
+
+<p>(The MIT License)</p>
+
+<p>Copyright (c) 2013 Scott Nonnenberg &lt;scott@nonnenberg.com&gt;</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p></div></div></div></div></body></html>
