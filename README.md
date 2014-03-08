@@ -49,6 +49,12 @@ And you'll also need to set a few variabless:
 
 ## History
 
+### 2.0.2
+
+* Minor versions: chai, mocha, sinon, thehelp-project
+* Patch version updates: grunt
+* Fixing too-long lines
+
 ### 2.0.1
 
 * Updating to latest version of `mocha`
