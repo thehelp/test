@@ -6,17 +6,17 @@
 
   "dependencies": {
     "amdefine": "0.1.x",
-    "chai": "1.8.1",
+    "chai": "1.9.0",
     "lodash": "2.x",
-    "mocha": "1.15.1",
+    "mocha": "1.17.1",
     "phantom": "0.5.4",
-    "sinon": "1.7.3",
+    "sinon": "1.9.0",
     "winston": "0.7.x"
   },
   "devDependencies": {
     "blanket": "https://github.com/NiKnight/blanket/tarball/changes",
-    "grunt": "0.4.2",
-    "thehelp-project": "git+ssh://git@infra:thehelp-project#v2.1.0"
+    "grunt": "0.4.3",
+    "thehelp-project": "git+ssh://git@infra:thehelp-project#v2.3.0"
   },
 
   "scripts": {
