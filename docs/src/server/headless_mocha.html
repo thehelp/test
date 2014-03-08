@@ -1,15 +1,13 @@
 <!DOCTYPE html><html lang="en"><head><title>src/server/headless_mocha</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/server/headless_mocha"><meta name="groc-project-path" content="src/server/headless_mocha.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/server/headless_mocha.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="headlessmocha">HeadlessMocha</h1>
 
-<p>This class uses the <a href="./headless.html"><code>Headless</code></a> class
-to run mocha tests inside a browser instance. It can also print
-the retrieved results to the command line using <a href="http://visionmedia.github.io/mocha/">Mocha</a>
-itself.</p>
+<p>This class uses the <a href="./headless.html"><code>Headless</code></a> class to run mocha tests inside a
+browser instance. It can also print the retrieved results to the command line using
+<a href="http://visionmedia.github.io/mocha/">Mocha</a> itself.</p>
 
-<p>For the simplest usage, just host your test files in the browser
-with the <a href="./harness.html">test harness</a> in this directory. Otherwise
-you can customize the way it runs tests and pulls results with the
-<code>runTests</code> and <code>getResults</code> functions, which are remoted by <code>dnode</code>
-and run in the target web page.</p></div></div><div class="code"><div class="wrapper"><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+<p>For the simplest usage, just host your test files in the browser with the
+<a href="./harness.html">test harness</a> in this directory. Otherwise you can customize the way it
+runs tests and pulls results with the <code>runTests</code> and <code>getResults</code> functions, which are
+remoted by <code>dnode</code> and run in the target web page.</p></div></div><div class="code"><div class="wrapper"><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
 
 <span class="kd">var</span> <span class="nx">events</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;events&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">util</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;util&#39;</span><span class="p">);</span>

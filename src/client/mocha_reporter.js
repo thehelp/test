@@ -1,7 +1,8 @@
   // # mochaReporter
-// Used on the client side to save the results of a [Mocha](http://visionmedia.github.io/mocha/)
-// test run to `window.results`, which can then be played back to Mocha
-// showing test results from a (usually headless) browser on the command line.
+// Used on the client side to save the results of a
+// [Mocha](http://visionmedia.github.io/mocha/) test run to `window.results`, which can
+// then be played back to Mocha showing test results from a (usually headless) browser on
+// the command line.
 define(function() {
   'use strict';
 

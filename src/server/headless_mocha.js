@@ -1,15 +1,13 @@
 /*
 # HeadlessMocha
-This class uses the [`Headless`](./headless.html) class
-to run mocha tests inside a browser instance. It can also print
-the retrieved results to the command line using [Mocha](http://visionmedia.github.io/mocha/)
-itself.
+This class uses the [`Headless`](./headless.html) class to run mocha tests inside a
+browser instance. It can also print the retrieved results to the command line using
+[Mocha](http://visionmedia.github.io/mocha/) itself.
 
-For the simplest usage, just host your test files in the browser
-with the [test harness](./harness.html) in this directory. Otherwise
-you can customize the way it runs tests and pulls results with the
-`runTests` and `getResults` functions, which are remoted by `dnode`
-and run in the target web page.
+For the simplest usage, just host your test files in the browser with the
+[test harness](./harness.html) in this directory. Otherwise you can customize the way it
+runs tests and pulls results with the `runTests` and `getResults` functions, which are
+remoted by `dnode` and run in the target web page.
 */
 
 'use strict';

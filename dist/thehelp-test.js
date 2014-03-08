@@ -1,4 +1,3 @@
-
 ;(function(){
 
 /**
@@ -4617,7 +4616,7 @@ require.alias("chai/index.js", "chai/index.js");if (typeof exports == "object") 
 // some core utility functions.
 
 // [RequireJS](http://requirejs.org/) boilerplate, dependencies and
-// [strict mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode)
+// [strict mode](http://mzl.la/1fRhnam)
 
 
 define('src/both/core',['winston', 'util', 'chai'],
@@ -8568,7 +8567,7 @@ define("sinon", (function (global) {
 // This class makes it easier to test code using [`general`](../both/general.html).
 
 // [RequireJS](http://requirejs.org/) boilerplate, dependencies and
-// [strict mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode)
+// [strict mode](http://mzl.la/1fRhnam)
 
 
 define('src/both/general_test_helper',['./core', 'util', 'winston', 'sinon'
@@ -8617,7 +8616,7 @@ define('src/both/general_test_helper',['./core', 'util', 'winston', 'sinon'
 // to show the logs on the console.
 
 // [RequireJS](http://requirejs.org/) boilerplate, dependencies and
-// [strict mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode)
+// [strict mode](http://mzl.la/1fRhnam)
 
 
 define('src/both/winston_test_helper',['./core', 'sinon', 'util', 'winston'
@@ -8656,9 +8655,10 @@ define('src/both/winston_test_helper',['./core', 'sinon', 'util', 'winston'
 });
 
   // # mochaReporter
-// Used on the client side to save the results of a [Mocha](http://visionmedia.github.io/mocha/)
-// test run to `window.results`, which can then be played back to Mocha
-// showing test results from a (usually headless) browser on the command line.
+// Used on the client side to save the results of a
+// [Mocha](http://visionmedia.github.io/mocha/) test run to `window.results`, which can
+// then be played back to Mocha showing test results from a (usually headless) browser on
+// the command line.
 define('src/client/mocha_reporter',[],function() {
   
 
@@ -14464,3 +14464,4 @@ define('thehelp-test',[
     chai: chai
   };
 });
+

@@ -6,7 +6,7 @@
 // to show the logs on the console.
 
 // [RequireJS](http://requirejs.org/) boilerplate, dependencies and
-// [strict mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode)
+// [strict mode](http://mzl.la/1fRhnam)
 if (typeof define !== 'function') {
   var define = require('amdefine')(module);
 }
