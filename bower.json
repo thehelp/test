@@ -1,9 +1,9 @@
 {
   "name": "thehelp-test",
   "dependencies": {
-    "chai": "1.8.1",
-    "mocha": "1.15.1",
-    "requirejs": "2.1.9",
-    "sinon": "1.7.3"
+    "chai": "1.9.1",
+    "mocha": "1.18.2",
+    "requirejs": "2.1.11",
+    "sinon": "1.9.0"
   }
 }
