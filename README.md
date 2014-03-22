@@ -49,6 +49,13 @@ And you'll also need to set a few variabless:
 
 ## History
 
+### 2.0.3
+
+* Patch versions: chai (npm + bower), phantom, requirejs (bower only)
+* Minor versions: mocha (npm + bower), sinon (bower only)
+* Dev dependencies: grunt, thehelp-project
+* New source map files
+
 ### 2.0.2
 
 * Minor versions: chai, mocha, sinon, thehelp-project
