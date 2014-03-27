@@ -23,10 +23,9 @@ define(['winston', 'util', 'chai'],
     });
   }
 
-  // Here we set up global `should` syntax, show callstacks and try to make
-  // diffs show a little less often. (I really don't want to see them all the time!)
-  chai.Assertion.includeStack = true;
-  chai.Assertion.showDiff = false;
+  // Here we show callstacks and try to make diffs show a little less often.
+  chai.config.includeStack = true;
+  chai.config.showDiff = false;
 
   return {
     should: chai.should(),

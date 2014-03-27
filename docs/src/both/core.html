@@ -17,8 +17,8 @@ we set up the console transport to the output we're looking for.</p></div></div>
       <span class="nx">timestamp</span><span class="o">:</span> <span class="kc">true</span>
     <span class="p">});</span>
   <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Here we set up global <code>should</code> syntax, show callstacks and try to make
-diffs show a little less often. (I really don't want to see them all the time!)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">chai</span><span class="p">.</span><span class="nx">Assertion</span><span class="p">.</span><span class="nx">includeStack</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-  <span class="nx">chai</span><span class="p">.</span><span class="nx">Assertion</span><span class="p">.</span><span class="nx">showDiff</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+diffs show a little less often. (I really don't want to see them all the time!)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">chai</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">includeStack</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="nx">chai</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">showDiff</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 
   <span class="k">return</span> <span class="p">{</span>
     <span class="nx">should</span><span class="o">:</span> <span class="nx">chai</span><span class="p">.</span><span class="nx">should</span><span class="p">(),</span>
