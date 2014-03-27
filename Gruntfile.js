@@ -10,6 +10,7 @@ module.exports = function(grunt) {
 
   config.standardSetup();
 
+  // ## dist
   var options = require('./src/client/config');
 
   config.registerOptimize({
@@ -30,6 +31,15 @@ module.exports = function(grunt) {
       'node_modules/thehelp-project/node_modules/grunt-mocha/phantomjs/bridge.js'
   });
 
+  grunt.registerTask('dist', ['requirejs', 'copy']);
+
+  // ## setup
+  config.registerInstall();
+  config.registerCopyFromBower();
+  grunt.registerTask('setup', ['shell:npm-install', 'shell:bower-install',
+    'copy:from-bower']);
+
+  // ## client-test
   config.registerMocha([
     'http://localhost:3001/test/integration/dev.html',
     'http://localhost:3001/test/integration/dist.html'
@@ -37,6 +47,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('client-test', ['connect:test', 'mocha']);
 
-  grunt.registerTask('dist', ['requirejs', 'copy']);
+  // ## default
   grunt.registerTask('default', ['test', 'staticanalysis', 'doc', 'dist', 'client-test']);
 };
