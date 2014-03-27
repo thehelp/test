@@ -49,6 +49,11 @@ And you'll also need to set a few variabless:
 
 ## History
 
+### 2.0.4 (2014-03-27)
+
+* Actually copying new versions of bower deps to lib/vendor now, new 'setup' grunt task
+* use `chai.config` instead of `chai.Assertion` for configuration, to get rid of deprecation warnings
+
 ### 2.0.3
 
 * Patch versions: chai (npm + bower), phantom, requirejs (bower only)
