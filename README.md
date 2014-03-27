@@ -49,6 +49,10 @@ And you'll also need to set a few variabless:
 
 ## History
 
+### 2.0.5 (2014-03-27)
+
+* Ugh. That last update missed `sinon` because its bower package has no ready-to-use sinon.js; needs to be udated manually. But not directly from the website - that version has extra weirdness.
+
 ### 2.0.4 (2014-03-27)
 
 * Actually copying new versions of bower deps to lib/vendor now, new 'setup' grunt task
