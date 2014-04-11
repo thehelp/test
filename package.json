@@ -10,7 +10,7 @@
     "lodash": "2.x",
     "mocha": "1.18.2",
     "phantom": "0.5.7",
-    "sinon": "1.9.0",
+    "sinon": "1.9.1",
     "winston": "0.7.x"
   },
   "devDependencies": {
