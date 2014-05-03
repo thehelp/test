@@ -49,6 +49,11 @@ And you'll also need to set a few variabless:
 
 ## History
 
+### 2.0.7 (2014-05-02)
+
+* Minor version update: `phantomjs`
+* Update dev dependency: `thehelp-project`
+
 ### 2.0.6 (2014-04-11)
 
 * Patch version update: `sinon`
