@@ -17,7 +17,7 @@
 
 <p>Include the project in your dependencies:</p>
 
-<pre><code>"thehelp-test": "git+ssh://git@infra:thehelp-test#v1.0.0"
+<pre><code>npm install thehelp-test --save-dev
 </code></pre>
 
 <h3 id="usage">Usage</h3>
@@ -41,9 +41,9 @@ expect(winston.info).to.have.propety(callCount, 1);
 <p>This same code also works on the client, assuming that you've set things up properly. youll need to set up requirejs paths for several depenencies:</p>
 
 <ul>
-<li>thehelp-test</li>
-<li>thehelp-test-coverage if you'd like to measure test coverage</li>
-<li>grunt-mocha-bridge if you'd like to run tests with the <code>grunt-mocha</code> task</li>
+<li><code>thehelp-test</code></li>
+<li><code>thehelp-test-coverage</code> if you'd like to measure test coverage</li>
+<li><code>grunt-mocha-bridge</code> if you'd like to run tests with the <code>grunt-mocha</code> task</li>
 </ul>
 
 <p>And you'll also need to set a few variabless:</p>
@@ -56,6 +56,14 @@ expect(winston.info).to.have.propety(callCount, 1);
 </ul>
 
 <h2 id="history">History</h2>
+
+<h3 id="208-2014-05-02">2.0.8 (2014-05-02)</h3>
+
+<ul>
+<li>Minor version update: <code>mocha</code> (both client and server)</li>
+<li>Patch version update: <code>phantomjs</code></li>
+<li>Update a few dev dependencies, style standardization</li>
+</ul>
 
 <h3 id="207-2014-05-02">2.0.7 (2014-05-02)</h3>
 
@@ -84,7 +92,7 @@ expect(winston.info).to.have.propety(callCount, 1);
 <li>use <code>chai.config</code> instead of <code>chai.Assertion</code> for configuration, to get rid of deprecation warnings</li>
 </ul>
 
-<h3 id="203">2.0.3</h3>
+<h3 id="203-2014-03-21">2.0.3 (2014-03-21)</h3>
 
 <ul>
 <li>Patch versions: chai (npm + bower), phantom, requirejs (bower only)</li>
@@ -93,7 +101,7 @@ expect(winston.info).to.have.propety(callCount, 1);
 <li>New source map files</li>
 </ul>
 
-<h3 id="202">2.0.2</h3>
+<h3 id="202-2014-03-07">2.0.2 (2014-03-07)</h3>
 
 <ul>
 <li>Minor versions: chai, mocha, sinon, thehelp-project</li>
@@ -101,7 +109,7 @@ expect(winston.info).to.have.propety(callCount, 1);
 <li>Fixing too-long lines</li>
 </ul>
 
-<h3 id="201">2.0.1</h3>
+<h3 id="201-2013-12-08">2.0.1 (2013-12-08)</h3>
 
 <ul>
 <li>Updating to latest version of <code>mocha</code></li>
@@ -109,7 +117,7 @@ expect(winston.info).to.have.propety(callCount, 1);
 <li>All 'generic' dependencies (<code>lodash</code>, <code>amdefine</code>, <code>winston</code>) now specified either as 1.x or 0.1.x to allow full flexibility to top-level project</li>
 </ul>
 
-<h3 id="200">2.0.0</h3>
+<h3 id="200-2013-11-19">2.0.0 (2013-11-19)</h3>
 
 <ul>
 <li>Rename 'dist/harness.js' to 'dist/thehelp-test-harness.js'</li>
@@ -117,20 +125,20 @@ expect(winston.info).to.have.propety(callCount, 1);
 <li>Fixing <code>mocha_reporter</code> inclusing in <code>dist/thehelp-test</code></li>
 </ul>
 
-<h3 id="102">1.0.2</h3>
+<h3 id="102-2013-11-18">1.0.2 (2013-11-18)</h3>
 
 <ul>
 <li>Fix to harness.js to ensure that blanket code coverage works</li>
 <li>Fix loop through methods in <code>WinstonTestHelper</code></li>
 </ul>
 
-<h3 id="101">1.0.1</h3>
+<h3 id="101-2013-11-18">1.0.1 (2013-11-18)</h3>
 
 <ul>
 <li>Pulling 'dist/grunt-mocha-bridge.js' from node_modules dir under 'thehelp-project'</li>
 </ul>
 
-<h3 id="100">1.0.0</h3>
+<h3 id="100-2013-11-14">1.0.0 (2013-11-14)</h3>
 
 <ul>
 <li>Initial release - sinon, mocha, chai all included. Client-side files under dist/</li>

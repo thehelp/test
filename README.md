@@ -53,6 +53,12 @@ And you'll also need to set a few variabless:
 
 ## History
 
+### 2.0.8 (2014-05-02)
+
+* Minor version update: `mocha` (both client and server)
+* Patch version update: `phantomjs`
+* Update a few dev dependencies, style standardization
+
 ### 2.0.7 (2014-05-02)
 
 * Minor version update: `phantomjs`
