@@ -8,8 +8,8 @@
     "amdefine": "0.1.x",
     "chai": "1.9.1",
     "lodash": "2.x",
-    "mocha": "1.18.2",
     "sinon": "1.9.1",
+    "mocha": "1.19.0",
     "phantom": "0.6.3",
     "winston": "0.7.x"
   },
