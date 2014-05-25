@@ -48,5 +48,8 @@ module.exports = function(grunt) {
   grunt.registerTask('client-test', ['connect:test', 'mocha']);
 
   // ## default
-  grunt.registerTask('default', ['test', 'staticanalysis', 'doc', 'dist', 'client-test']);
+  grunt.registerTask(
+    'default',
+    ['test', 'staticanalysis', 'style', 'doc', 'dist', 'client-test']
+  );
 };
