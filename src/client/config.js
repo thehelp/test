@@ -31,7 +31,6 @@ define(function() {
       util: 'src/client/shims/util_shim'
     },
     shim: {
-      sinon: { exports: 'window.sinon' },
       mocha: { exports: 'global.mocha' },
 
       // This is what holds all the blanket-based code coverage stuff together.
