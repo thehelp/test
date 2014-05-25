@@ -30,7 +30,7 @@ during client-side testing scenarios and during optimization.</p></div></div><di
       <span class="nx">util</span><span class="o">:</span> <span class="s1">&#39;src/client/shims/util_shim&#39;</span>
     <span class="p">},</span>
     <span class="nx">shim</span><span class="o">:</span> <span class="p">{</span>
-      <span class="nx">mocha</span><span class="o">:</span> <span class="p">{</span> <span class="nx">exports</span><span class="o">:</span> <span class="s1">&#39;global.mocha&#39;</span> <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>This is what holds all the blanket-based code coverage stuff together.
+      <span class="nx">mocha</span><span class="o">:</span> <span class="p">{</span><span class="nx">exports</span><span class="o">:</span> <span class="s1">&#39;global.mocha&#39;</span><span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>This is what holds all the blanket-based code coverage stuff together.
 First, <code>falafel</code> is node module I browserified to work in the browser. Then
 I modified blanket itself to allow <code>falafel</code> to be injected via
 <code>blanket.parseAndModify</code>. Then I set some default filters on blanket, only

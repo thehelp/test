@@ -36,8 +36,10 @@ module.exports = function(grunt) {
   // ## setup
   config.registerInstall();
   config.registerCopyFromBower();
-  grunt.registerTask('setup', ['shell:npm-install', 'shell:bower-install',
-    'copy:from-bower']);
+  grunt.registerTask(
+    'setup',
+    ['shell:npm-install', 'shell:bower-install', 'copy:from-bower']
+  );
 
   // ## client-test
   config.registerMocha([

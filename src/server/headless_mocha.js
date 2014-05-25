@@ -81,7 +81,7 @@ HeadlessMocha.prototype.printResults = function(results) {
     }
     if (result.object && result.object.fullTitle) {
       var fullTitle = result.object.fullTitle;
-      result.object.fullTitle = function () { return fullTitle; };
+      result.object.fullTitle = function() { return fullTitle; };
     }
     if (result.name === 'test end') {
       runner.total += 1;

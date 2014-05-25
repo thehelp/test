@@ -7,13 +7,13 @@ define([
   'falafel',
   'blanket',
   'blanket-require'
-],
-  function(
-    test,
-    falafel,
-    blanket,
-    blanketRequire
-  ) {
+], function(
+  test,
+  falafel,
+  blanket,
+  blanketRequire
+) {
+
   'use strict';
 
   return {

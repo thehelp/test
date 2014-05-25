@@ -31,7 +31,7 @@ define(function() {
       util: 'src/client/shims/util_shim'
     },
     shim: {
-      mocha: { exports: 'global.mocha' },
+      mocha: {exports: 'global.mocha'},
 
       // This is what holds all the blanket-based code coverage stuff together.
       // First, `falafel` is node module I browserified to work in the browser. Then

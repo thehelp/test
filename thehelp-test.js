@@ -9,16 +9,16 @@ define([
   'sinon',
   'mocha',
   'chai'
-],
-  function(
-    core,
-    GeneralTestHelper,
-    WinstonTestHelper,
-    mochaReporter,
-    sinon,
-    mocha,
-    chai
-  ) {
+], function(
+  core,
+  GeneralTestHelper,
+  WinstonTestHelper,
+  mochaReporter,
+  sinon,
+  mocha,
+  chai
+) {
+
   'use strict';
 
   return {

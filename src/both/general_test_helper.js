@@ -7,10 +7,8 @@ if (typeof define !== 'function') {
   var define = require('amdefine')(module);
 }
 
-define(['./core', 'util', 'winston', 'sinon'
-],
-  function(core, util, winston, sinon
-  ) {
+define(['./core', 'util', 'winston', 'sinon'], function(core, util, winston, sinon) {
+
   'use strict';
 
   function GeneralTestHelper(options) {

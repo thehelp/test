@@ -8,8 +8,8 @@ if (typeof define !== 'function') {
   var define = require('amdefine')(module);
 }
 
-define(['winston', 'util', 'chai'],
-  function(winston, util, chai) {
+define(['winston', 'util', 'chai'], function(winston, util, chai) {
+
   'use strict';
 
   // We check if we're on the server by looking for `winston.remove`. Then
