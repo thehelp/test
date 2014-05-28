@@ -18,4 +18,6 @@ Gruntfile.js
 result.html
 env.json
 config.json
-*.js
+
+thehelp-test.js
+thehelp-coverage-test.js
