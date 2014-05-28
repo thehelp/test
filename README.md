@@ -53,7 +53,11 @@ And you'll also need to set a few variabless:
 
 ## History
 
-### 2.0.8 (2014-05-02)
+### 2.0.9 (2014-05-27)
+
+* Pare down what's in npm package
+
+### 2.0.8 (2014-05-24)
 
 * Minor version update: `mocha` (both client and server)
 * Patch version update: `phantomjs`
