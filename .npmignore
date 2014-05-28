@@ -20,4 +20,4 @@ env.json
 config.json
 
 thehelp-test.js
-thehelp-coverage-test.js
+thehelp-test-coverage.js
