@@ -53,6 +53,10 @@ And you'll also need to set a few variabless:
 
 ## History
 
+### 2.0.10 (2014-05-27)
+
+* Let's add the js back into the project, shall we?
+
 ### 2.0.9 (2014-05-27)
 
 * Pare down what's in npm package
