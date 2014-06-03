@@ -13,7 +13,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "commentsOnly": true,
           "name": "Markdown"
         },
-        "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/README.md",
         "projectPath": "README.md",
         "targetPath": "index",
         "pageTitle": "index",
@@ -380,7 +379,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "JavaScript"
         },
-        "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/Gruntfile.js",
         "projectPath": "Gruntfile.js",
         "targetPath": "Gruntfile",
         "pageTitle": "Gruntfile",
@@ -495,7 +493,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/src/both/core.js",
                 "projectPath": "src/both/core.js",
                 "targetPath": "src/both/core",
                 "pageTitle": "src/both/core",
@@ -525,7 +522,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/src/both/general_test_helper.js",
                 "projectPath": "src/both/general_test_helper.js",
                 "targetPath": "src/both/general_test_helper",
                 "pageTitle": "src/both/general_test_helper",
@@ -555,7 +551,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/src/both/something.js",
                 "projectPath": "src/both/something.js",
                 "targetPath": "src/both/something",
                 "pageTitle": "src/both/something",
@@ -585,7 +580,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/src/both/winston_test_helper.js",
                 "projectPath": "src/both/winston_test_helper.js",
                 "targetPath": "src/both/winston_test_helper",
                 "pageTitle": "src/both/winston_test_helper",
@@ -625,7 +619,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/src/client/config.js",
                 "projectPath": "src/client/config.js",
                 "targetPath": "src/client/config",
                 "pageTitle": "src/client/config",
@@ -655,7 +648,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/src/client/harness.js",
                 "projectPath": "src/client/harness.js",
                 "targetPath": "src/client/harness",
                 "pageTitle": "src/client/harness",
@@ -685,7 +677,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/src/client/mocha_reporter.js",
                 "projectPath": "src/client/mocha_reporter.js",
                 "targetPath": "src/client/mocha_reporter",
                 "pageTitle": "src/client/mocha_reporter",
@@ -723,7 +714,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "foldPrefix": "^",
                       "name": "JavaScript"
                     },
-                    "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/src/client/shims/util_shim.js",
                     "projectPath": "src/client/shims/util_shim.js",
                     "targetPath": "src/client/shims/util_shim",
                     "pageTitle": "src/client/shims/util_shim",
@@ -753,7 +743,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "foldPrefix": "^",
                       "name": "JavaScript"
                     },
-                    "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/src/client/shims/winston_shim.js",
                     "projectPath": "src/client/shims/winston_shim.js",
                     "targetPath": "src/client/shims/winston_shim",
                     "pageTitle": "src/client/shims/winston_shim",
@@ -795,7 +784,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/src/server/headless.js",
                 "projectPath": "src/server/headless.js",
                 "targetPath": "src/server/headless",
                 "pageTitle": "src/server/headless",
@@ -825,7 +813,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/src/server/headless_mocha.js",
                 "projectPath": "src/server/headless_mocha.js",
                 "targetPath": "src/server/headless_mocha",
                 "pageTitle": "src/server/headless_mocha",
@@ -855,7 +842,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/src/server/index.js",
                 "projectPath": "src/server/index.js",
                 "targetPath": "src/server/index",
                 "pageTitle": "src/server/index",
@@ -879,7 +865,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "JavaScript"
         },
-        "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/thehelp-test.js",
         "projectPath": "thehelp-test.js",
         "targetPath": "thehelp-test",
         "pageTitle": "thehelp-test",
@@ -909,7 +894,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "JavaScript"
         },
-        "sourcePath": "/Users/scottnonnenberg/Development/thehelp/thehelp-test/thehelp-test-coverage.js",
         "projectPath": "thehelp-test-coverage.js",
         "targetPath": "thehelp-test-coverage",
         "pageTitle": "thehelp-test-coverage",
