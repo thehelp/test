@@ -1,14 +1,14 @@
 <!DOCTYPE html><html lang="en"><head><title>index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="index"><meta name="groc-project-path" content="README.md"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">README.md</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="thehelp-test">thehelp-test</h1>
 
-<p>Gives you standard testing tools for both the client and the server in one package, including client-side test coverage under requirejs via blanket and come custom modificiations.</p>
+<p>Gives you standard testing tools for both the client and the server in one package, including client-side test coverage under <a href="http://requirejs.org/"><code>requirejs</code></a> via <a href="http://blanketjs.org/"><code>blanket</code></a> and some custom modificiations.</p>
 
 <h2 id="features">Features</h2>
 
 <ul>
 <li>Include a number of core testing libraries: <code>mocha</code>, <code>sinon</code>, and <code>chai</code> available on the client and on the server</li>
-<li>dist/thehelp-test-harness.js to make it easy to test on the client side, whether in the browser, under raw PhantomJS, or via the <code>grunt-mocha</code> task</li>
+<li>dist/thehelp-test-harness.js to make it easy to test on the client side, whether in the browser, under raw <code>phantomjs</code>, or via the <code>grunt-mocha</code> task</li>
 <li><code>WinstonTestHelper</code> and <code>GeneralTestHelper</code> to customize logging behavior during tests, as well as verify that calls were made as expected</li>
-<li><code>Headless</code> and <code>HeadlessMocha</code> classes to make it easy to call directly into PhantomJS</li>
+<li><code>Headless</code> and <code>HeadlessMocha</code> classes to make it easy to call directly into <code>phantomjs</code></li>
 </ul>
 
 <h2 id="jump-in">Jump in!</h2>
@@ -30,23 +30,25 @@ var expect = core.expect;
 var sinon = test.sinon;
 var WinstonTestHelper = test.WinstonTestHelper;
 
-core.processError('method', err); // throws err if its truthy
+core.processError('method', err); // throws err if it's truthy
 var stub = sinon.stub();
 
 var winston = new WinstonTestHelper({showLogs: false});
 winston.info('blah');
-expect(winston.info).to.have.propety(callCount, 1);
+expect(winston).to.have.deep.property('info.callCount', 1);
 </code></pre>
 
-<p>This same code also works on the client, assuming that you've set things up properly. youll need to set up requirejs paths for several depenencies:</p>
+<p>This same code also works on the client, assuming that you've set things up properly. you'll need to set up <code>requirejs</code> paths for several dependencies:</p>
 
 <ul>
 <li><code>thehelp-test</code></li>
-<li><code>thehelp-test-coverage</code> if you'd like to measure test coverage</li>
-<li><code>grunt-mocha-bridge</code> if you'd like to run tests with the <code>grunt-mocha</code> task</li>
+<li><code>thehelp-test-coverage</code> (if you'd like to measure test coverage)</li>
+<li><code>grunt-mocha-bridge</code> (if you'd like to run tests with the <code>grunt-mocha</code> task)</li>
+<li><code>winston</code> (consider using shims from <code>thehelp-core</code>)</li>
+<li><code>util</code> (consider using shims from <code>thehelp-core</code>)</li>
 </ul>
 
-<p>And you'll also need to set a few variabless:</p>
+<p>And you'll also need to set a few variables:</p>
 
 <ul>
 <li><code>window.tests</code> is an array of test files to be pulled in via requirejs.</li>

@@ -1,13 +1,13 @@
 # thehelp-test
 
-Gives you standard testing tools for both the client and the server in one package, including client-side test coverage under requirejs via blanket and come custom modificiations.
+Gives you standard testing tools for both the client and the server in one package, including client-side test coverage under [`requirejs`](http://requirejs.org/) via [`blanket`](http://blanketjs.org/) and some custom modificiations.
 
 ## Features
 
 * Include a number of core testing libraries: `mocha`, `sinon`, and `chai` available on the client and on the server
-* dist/thehelp-test-harness.js to make it easy to test on the client side, whether in the browser, under raw PhantomJS, or via the `grunt-mocha` task
+* dist/thehelp-test-harness.js to make it easy to test on the client side, whether in the browser, under raw `phantomjs`, or via the `grunt-mocha` task
 * `WinstonTestHelper` and `GeneralTestHelper` to customize logging behavior during tests, as well as verify that calls were made as expected
-* `Headless` and `HeadlessMocha` classes to make it easy to call directly into PhantomJS
+* `Headless` and `HeadlessMocha` classes to make it easy to call directly into `phantomjs`
 
 ## Jump in!
 
@@ -30,21 +30,23 @@ var expect = core.expect;
 var sinon = test.sinon;
 var WinstonTestHelper = test.WinstonTestHelper;
 
-core.processError('method', err); // throws err if its truthy
+core.processError('method', err); // throws err if it's truthy
 var stub = sinon.stub();
 
 var winston = new WinstonTestHelper({showLogs: false});
 winston.info('blah');
-expect(winston.info).to.have.propety(callCount, 1);
+expect(winston).to.have.deep.property('info.callCount', 1);
 ```
 
-This same code also works on the client, assuming that you've set things up properly. youll need to set up requirejs paths for several depenencies:
+This same code also works on the client, assuming that you've set things up properly. you'll need to set up `requirejs` paths for several dependencies:
 
 * `thehelp-test`
-* `thehelp-test-coverage` if you'd like to measure test coverage
-* `grunt-mocha-bridge` if you'd like to run tests with the `grunt-mocha` task
+* `thehelp-test-coverage` (if you'd like to measure test coverage)
+* `grunt-mocha-bridge` (if you'd like to run tests with the `grunt-mocha` task)
+* `winston` (consider using shims from `thehelp-core`)
+* `util` (consider using shims from `thehelp-core`)
 
-And you'll also need to set a few variabless:
+And you'll also need to set a few variables:
 
 * `window.tests` is an array of test files to be pulled in via requirejs.
 * `window.mochaCss` is a path to the mocha css file, which makes its HTML test output look nice
