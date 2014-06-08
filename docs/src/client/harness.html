@@ -85,7 +85,7 @@ all test output to <code>window.results</code>, which can be played back to Moch
 line.</p></div></div><div class="code"><div class="wrapper">  <span class="kd">var</span> <span class="nx">setupMocha</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">mocha</span><span class="p">,</span> <span class="nx">headlessReporter</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;Phantom&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">mocha</span><span class="p">.</span><span class="nx">setup</span><span class="p">({</span>
-        <span class="nx">ui</span><span class="o">:</span><span class="s1">&#39;bdd&#39;</span><span class="p">,</span>
+        <span class="nx">ui</span><span class="o">:</span> <span class="s1">&#39;bdd&#39;</span><span class="p">,</span>
         <span class="nx">reporter</span><span class="o">:</span> <span class="nx">headlessReporter</span>
       <span class="p">});</span>
 
