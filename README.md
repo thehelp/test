@@ -55,6 +55,13 @@ And you'll also need to set a few variables:
 
 ## History
 
+### 2.0.11 (2014-06-08)
+
+* Minor version update: `mocha` (both client and server, but it seems that the mocha client file didn't actually change...)
+* Properly remove 'thehelp-test-coverage.js' from the npm package
+* Some documentation updates
+* Update dev dependencies
+
 ### 2.0.10 (2014-05-27)
 
 * Let's add the js back into the project, shall we?
