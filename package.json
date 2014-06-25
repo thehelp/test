@@ -1,6 +1,6 @@
 {
   "name": "thehelp-test",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "main": "src/server/index.js",
 
   "dependencies": {

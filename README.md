@@ -55,6 +55,13 @@ And you'll also need to set a few variables:
 
 ## History
 
+### 2.0.12 (2014-06-25)
+
+* Restore dist/thehelp-test.js to npm package
+* Remove source maps from npm package
+* Remove docs from npm package
+* Remove docs and dist from repo
+
 ### 2.0.11 (2014-06-08)
 
 * Minor version update: `mocha` (both client and server, but it seems that the mocha client file didn't actually change...)
