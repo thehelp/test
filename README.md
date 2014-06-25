@@ -55,6 +55,10 @@ And you'll also need to set a few variables:
 
 ## History
 
+### 2.0.13 (2014-06-25)
+
+* Restore dist/thehelp-test-coverage.js to npm package. :0(
+
 ### 2.0.12 (2014-06-25)
 
 * Restore dist/thehelp-test.js to npm package
