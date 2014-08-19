@@ -6,7 +6,7 @@ if (typeof define !== 'function') {
 define(['thehelp-test'], function(test) {
   'use strict';
 
-  var expect = test.core.expect;
+  var expect = test.expect;
   var WinstonTestHelper = test.WinstonTestHelper;
 
   describe('both/WinstonTestHelper', function() {

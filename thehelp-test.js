@@ -3,17 +3,13 @@
 
 define([
   'src/both/core',
-  'src/both/general_test_helper',
   'src/both/winston_test_helper',
-  'src/client/mocha_reporter',
   'sinon',
   'mocha',
   'chai'
 ], function(
   core,
-  GeneralTestHelper,
   WinstonTestHelper,
-  mochaReporter,
   sinon,
   mocha,
   chai
@@ -22,10 +18,8 @@ define([
   'use strict';
 
   return {
-    core: core,
-    GeneralTestHelper: GeneralTestHelper,
+    expect: chai.expect,
     WinstonTestHelper: WinstonTestHelper,
-    mochaReporter: mochaReporter,
     sinon: sinon,
     mocha: mocha,
     chai: chai

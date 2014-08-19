@@ -6,7 +6,7 @@ if (typeof define !== 'function') {
 define(['thehelp-test', '../../../src/both/something'], function(test, something) {
   'use strict';
 
-  var expect = test.core.expect;
+  var expect = test.expect;
 
   describe('both/something', function() {
 

@@ -6,15 +6,11 @@ if (typeof define !== 'function') {
 define(['thehelp-test'], function(test) {
   'use strict';
 
-  var expect = test.core.expect;
+  var expect = test.expect;
 
   describe('both/thehelp-test', function() {
-    it('should have property core', function() {
-      expect(test).to.have.property('core');
-    });
-
-    it('should have property GeneralTestHelper', function() {
-      expect(test).to.have.property('GeneralTestHelper');
+    it('should have property expect', function() {
+      expect(test).to.have.property('expect');
     });
 
     it('should have property WinstonTestHelper', function() {

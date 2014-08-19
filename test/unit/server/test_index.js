@@ -1,23 +1,13 @@
 
-if (typeof define !== 'function') {
-  var define = require('amdefine')(module);
-}
+'use strict';
 
-define(['thehelp-test'], function(test) {
-  'use strict';
+var test = require('../../../src/server/index');
+var expect = test.expect;
 
-  var expect = test.core.expect;
+describe('server/thehelp-test', function() {
 
-  describe('server/thehelp-test', function() {
-
-    it('should have property Headless', function() {
-      expect(test).to.have.property('Headless');
-    });
-
-    it('should have property HeadlessMocha', function() {
-      expect(test).to.have.property('HeadlessMocha');
-    });
-
+  it('should have four keys', function() {
+    expect(Object.keys(test)).to.have.length(4);
   });
 
 });

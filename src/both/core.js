@@ -26,32 +26,4 @@ define(['winston', 'util', 'chai'], function(winston, util, chai) {
   // Here we show callstacks and try to make diffs show a little less often.
   chai.config.includeStack = true;
   chai.config.showDiff = false;
-
-  return {
-    should: chai.should(),
-    expect: chai.expect,
-
-    // `processError` tries to make it a little easier to kill your test
-    // if a callback returns an error.
-    processError: function(method, err) {
-      if (err) {
-        throw new Error(method + ' returned an error: \'' + util.inspect(err) + '\'');
-      }
-    },
-
-    // `processVar` ensures that a given variable is truthy - it throws an
-    // error if not. Also, if `showLogs` is true (which it is by default)
-    // you'll see the value of that variable in the log.
-    showLogs: true,
-    processVar: function(name, variable) {
-      if (variable) {
-        if (this.showLogs) {
-          winston.info(name + ' had the value ' + util.inspect(variable));
-        }
-      }
-      else {
-        throw new Error(name + ' was not set');
-      }
-    }
-  };
 });

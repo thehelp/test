@@ -6,12 +6,12 @@ if (typeof define !== 'function') {
 define(['thehelp-test'], function(test) {
   'use strict';
 
-  var expect = test.core.expect;
+  var expect = test.expect;
 
-  describe('both/thehelp-test', function() {
+  describe('client/thehelp-test', function() {
 
-    it('should have property mochaReporter', function() {
-      expect(test).to.have.property('mochaReporter');
+    it('should have five keys', function() {
+      expect(Object.keys(test)).to.have.length(5);
     });
 
   });
