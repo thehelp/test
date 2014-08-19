@@ -55,6 +55,14 @@ And you'll also need to set a few variables:
 
 ## History
 
+### Next:
+
+* Breaking: Remove `GeneralTestHelper`, `Headless`, `HeadlessMocha`, `mochaReporter`, and `core`
+* `expect` can now be found on the top-level object instead of under `core
+* `phantom` and `mocha` server-side dependencies removed
+* `mocha` (client-side) updated to 1.21.4
+* Update dev dependencies
+
 ### 2.0.13 (2014-06-25)
 
 * Restore dist/thehelp-test-coverage.js to npm package. :0(
