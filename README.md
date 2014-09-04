@@ -9,9 +9,7 @@ Gives you standard testing tools for both the client and the server in one packa
 * `WinstonTestHelper` and `GeneralTestHelper` to customize logging behavior during tests, as well as verify that calls were made as expected
 * `Headless` and `HeadlessMocha` classes to make it easy to call directly into `phantomjs`
 
-## Jump in!
-
-### Install
+## Setup
 
 Include the project in your dependencies:
 
@@ -25,13 +23,13 @@ To write tests very quickly, just pull in the project and start using it!
 
 ```
 var test = require('thehelp-test');
-var core = test.core;
-var expect = core.expect;
+var expect = test.expect;
 var sinon = test.sinon;
 var WinstonTestHelper = test.WinstonTestHelper;
 
-core.processError('method', err); // throws err if it's truthy
 var stub = sinon.stub();
+stub();
+expect(stub).to.have.property('callCount', 1);
 
 var winston = new WinstonTestHelper({showLogs: false});
 winston.info('blah');
@@ -42,23 +40,32 @@ This same code also works on the client, assuming that you've set things up prop
 
 * `thehelp-test`
 * `thehelp-test-coverage` (if you'd like to measure test coverage)
-* `grunt-mocha-bridge` (if you'd like to run tests with the `grunt-mocha` task)
-* `winston` (consider using shims from `thehelp-core`)
+* `grunt-mocha-bridge` (if you'd like to run tests from the command line with the `grunt-mocha` task)
+* `winston` (consider using shims from [`thehelp-core`](https://github.com/thehelp/core))
 * `util` (consider using shims from `thehelp-core`)
 
-And you'll also need to set a few variables:
+To configure it:
 
-* `window.tests` is an array of test files to be pulled in via requirejs.
-* `window.mochaCss` is a path to the mocha css file, which makes its HTML test output look nice
-* `window.waitToRun` can be set to prevent the tests from running after successful load
-* `window.coverage`, if set to true, turns on `blanket`-based code coverage (it instruments your code as it's loaded via requirejs)
+```javascript
+window.thehelp = {
+  test: {
+    files: ['the', 'test', 'file', 'paths', 'for', 'requirejs'],
+    mochaCss: 'path to mocha.css',
+    coverage: false, // optional, defaults to true, for code coverage in browser via blanket
+    waitToRun: true, // optional, defaults to false, auto-starting tests on load
+  }
+}
+```
 
 ## History
 
 ### Next:
 
 * Breaking: Remove `GeneralTestHelper`, `Headless`, `HeadlessMocha`, `mochaReporter`, and `core`
-* `expect` can now be found on the top-level object instead of under `core
+* Breaking: Client-side configuration now under
+* Breaking: `expect` can now be found on the top-level object instead of under `core`
+* Fixed: extra 'load' window event fired to get blanket to cover all files and start tests. Now we force blanket to start when all files are loaded.
+* Fixed: repeatable process for building blanket file
 * `phantom` and `mocha` server-side dependencies removed
 * `mocha` (client-side) updated to 1.21.4
 * Update dev dependencies

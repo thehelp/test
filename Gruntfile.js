@@ -21,14 +21,16 @@ module.exports = function(grunt) {
 };
 
 internals.setupDist = function(config, grunt) {
-  var options = require('./src/client/config');
+  var options = require('./src/client/thehelp-test/config');
   config.registerOptimizeLibrary({
-    name: 'thehelp-test',
+    source: 'thehelp-test',
+    targetPath: 'dist',
     empty: ['winston', 'util'],
     config: options
   });
   config.registerOptimizeLibrary({
-    name: 'thehelp-test-coverage',
+    source: 'thehelp-test-coverage',
+    targetPath: 'dist',
     empty: ['thehelp-test', 'winston', 'util', 'mocha'],
     config: options
   });
@@ -36,7 +38,7 @@ internals.setupDist = function(config, grunt) {
   config.registerCopy({
     files: {
       'dist/mocha.css': 'bower_components/mocha/mocha.css',
-      'dist/thehelp-test-harness.js': 'src/client/harness.js',
+      'dist/thehelp-test-harness.js': 'src/client/thehelp-test/harness.js',
       'dist/grunt-mocha-bridge.js':
         'node_modules/thehelp-client-project/node_modules/grunt-mocha/phantomjs/bridge.js'
     }

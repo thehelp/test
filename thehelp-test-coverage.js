@@ -4,14 +4,12 @@
 
 define([
   'blanket',
-  'src/client/bridge'
+  'src/client/thehelp-test/bridge'
 ], function(
   blanket
 ) {
 
   'use strict';
 
-  return {
-    blanket: blanket
-  };
+  return blanket;
 });

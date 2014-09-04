@@ -4,20 +4,25 @@
 <body>
 
 </body>
-<script>
-  window.tests = [
-    'test/unit/client/test_index',
 
-    'test/unit/both/test_something',
-    'test/unit/both/test_index',
-    'test/unit/both/test_winston_test_helper'
-  ];
-  window.mochaCss = '../../bower_components/mocha/mocha.css';
-  window.entrypoint = '../../src/client/harness.js';
-  window.coverage = true;
-  // window.waitToRun = true;
+<script>
+  window.entrypoint = '../../src/client/thehelp-test/harness.js';
+
+  window.thehelp = {
+    test: {
+      files: [
+        'test/unit/client/test_index',
+
+        'test/unit/both/test_something',
+        'test/unit/both/test_index',
+        'test/unit/both/test_winston_test_helper'
+      ],
+      mochaCss: '../../bower_components/mocha/mocha.css'
+    }
+  };
 
 </script>
+
 <script data-main='client/dev_setup.js' src="../../bower_components/requirejs/require.js"></script>
 
 </html>
