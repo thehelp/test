@@ -17,6 +17,10 @@
     "thehelp-project": "3.3.1"
   },
 
+  "scripts": {
+    "test": "grunt"
+  },
+
   "config": {
     "blanket": {
       "data-cover-only": "src",
