@@ -22,12 +22,7 @@ define(function() {
       chai: 'bower_components/chai/chai',
       sinon: 'lib/vendor/sinon',
       mocha: 'bower_components/mocha/mocha',
-
-      blanket: 'node_modules/blanket/dist/qunit/blanket',
-      'grunt-blanket-mocha': 'node_modules/grunt-blanket-mocha/support/grunt-reporter',
-
-      winston: 'src/client/shims/winston_shim',
-      util: 'src/client/shims/util_shim'
+      blanket: 'node_modules/blanket/dist/qunit/blanket'
     },
     shim: {
       mocha: {

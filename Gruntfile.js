@@ -25,13 +25,12 @@ internals.setupDist = function(config, grunt) {
   config.registerOptimizeLibrary({
     source: 'thehelp-test',
     targetPath: 'dist',
-    empty: ['winston', 'util'],
     config: options
   });
   config.registerOptimizeLibrary({
     source: 'thehelp-test-coverage',
     targetPath: 'dist',
-    empty: ['thehelp-test', 'winston', 'util', 'mocha'],
+    empty: ['thehelp-test', 'mocha'],
     config: options
   });
 

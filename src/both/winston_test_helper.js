@@ -11,7 +11,7 @@ if (typeof define !== 'function') {
   var define = require('amdefine')(module);
 }
 
-define(['./core', 'sinon', 'util', 'winston'], function(core, sinon, util, winston) {
+define(['sinon'], function(sinon) {
 
   'use strict';
 
@@ -19,8 +19,12 @@ define(['./core', 'sinon', 'util', 'winston'], function(core, sinon, util, winst
     options = options || {};
 
     this.showLogs = options.showLogs;
-    this.winston = options.winston || winston;
-    this.console = options.console || console;
+    this.log = function(text) {
+      if (console.log) {
+        var date = new Date();
+        console.log(date.toJSON(), text);
+      }
+    };
 
     this.reset();
   }
@@ -35,7 +39,7 @@ define(['./core', 'sinon', 'util', 'winston'], function(core, sinon, util, winst
     methods.forEach(function(method) {
       _this[method] = sinon.spy(function(text) {
         if (_this.showLogs) {
-          _this.winston[method](text);
+          _this.log(text);
         }
       });
     });

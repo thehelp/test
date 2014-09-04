@@ -1,13 +1,12 @@
 # thehelp-test
 
-Gives you standard testing tools for both the client and the server in one package, including client-side test coverage under [`requirejs`](http://requirejs.org/) via [`blanket`](http://blanketjs.org/) and some custom modificiations.
+One install gets you standard testing tools for both the client and the server, including client-side test coverage under [`requirejs`](http://requirejs.org/) via [`blanket`](http://blanketjs.org/).
 
 ## Features
 
-* Include a number of core testing libraries: `mocha`, `sinon`, and `chai` available on the client and on the server
-* dist/thehelp-test-harness.js to make it easy to test on the client side, whether in the browser, under raw `phantomjs`, or via the `grunt-mocha` task
-* `WinstonTestHelper` and `GeneralTestHelper` to customize logging behavior during tests, as well as verify that calls were made as expected
-* `Headless` and `HeadlessMocha` classes to make it easy to call directly into `phantomjs`
+* Include core testing libraries: [`mocha`](http://visionmedia.github.io/mocha/), [`sinon`](http://sinonjs.org/), and [`chai`](http://chaijs.com/) available on the client and on the server
+* dist/thehelp-test-harness.js to make it easy to test on the client side, whether in the browser or via [`grunt-mocha`](https://github.com/kmiyashiro/grunt-mocha)
+* `WinstonTestHelper` to verify that calls were made as expected and/or prevent logs from hitting console
 
 ## Setup
 
@@ -17,9 +16,11 @@ Include the project in your dependencies:
 npm install thehelp-test --save-dev
 ```
 
-### Usage
+### Usage (node.js)
 
 To write tests very quickly, just pull in the project and start using it!
+
+Here's some node.js code using it:
 
 ```
 var test = require('thehelp-test');
@@ -36,30 +37,97 @@ winston.info('blah');
 expect(winston).to.have.deep.property('info.callCount', 1);
 ```
 
-This same code also works on the client, assuming that you've set things up properly. you'll need to set up `requirejs` paths for several dependencies:
+### Usage (client-side)
 
-* `thehelp-test`
-* `thehelp-test-coverage` (if you'd like to measure test coverage)
-* `grunt-mocha-bridge` (if you'd like to run tests from the command line with the `grunt-mocha` task)
-* `winston` (consider using shims from [`thehelp-core`](https://github.com/thehelp/core))
-* `util` (consider using shims from `thehelp-core`)
-
-To configure it:
+This same code also works on the client, assuming that you've set things up properly. you'll need to set up `requirejs` paths for several dependencies. Your client-side test setup file 'setup.js' can look like this:
 
 ```javascript
+'use strict';
+
+requirejs.config({
+  baseUrl: '/',
+  paths: {
+    'thehelp-test': 'node_modules/thehelp-test/dist/thehelp-test',
+
+    // if you'd like to measure test coverage
+    'thehelp-test-coverage': 'node_modules/thehelp-test/dist/thehelp-test-coverage',
+
+    // if you'd like to run tests from the command line grunt-mocha
+    'grunt-mocha-bridge': 'node_modules/thehelp-test/dist/thehelp-test-coverage'
+  }
+});
+
+require([window.entrypoint], function() {});
+```
+
+And the HTML file hosting your tests can look like this:
+
+```html
+<script>
+  window.thehelp = {
+    test: {
+      files: [
+        'test/unit/client/test_index',
+        'test/unit/both/test_something',
+      ],
+      mochaCss: '../../dist/mocha.css'
+    }
+  };
+</script>
+
+<script data-main='setup.js' src="../../bower_components/requirejs/require.js"></script>
+```
+
+The test file files themselves are easy:
+
+```javascript
+// basic boilerplate so this file runs client and server
+if (typeof define !== 'function') {
+  var define = require('amdefine')(module);
+}
+
+define(['thehelp-test', '../../../src/both/something'], function(test, something) {
+  'use strict';
+
+  var expect = test.expect;
+
+  describe('something', function() {
+    it('covered should return 20', function() {
+      expect(something.covered()).to.equal(20);
+    });
+  });
+});
+```
+
+For all the details and a working example, take a look at the integration tests under 'test/integration' in this project.
+
+### Advanced Config
+
+You've got a few more options than just `files` and `mochaCss`. Here are the complete set of options:
+
+```
 window.thehelp = {
   test: {
+    // these two are required:
     files: ['the', 'test', 'file', 'paths', 'for', 'requirejs'],
     mochaCss: 'path to mocha.css',
-    blanket: { // optional blanket options, defaults are:
+
+    // optional blanket options, defaults are:
+    blanket: {
       filter: '/src/',
       antifilter: '["/bower_components/", "node_modules", "/test/","/lib/"]'
     },
-    coverage: false, // optional, defaults to true, for code coverage in browser via blanket
-    waitToRun: true, // optional, defaults to false, auto-starting tests on load
+
+    // optional, defaults to true, for code coverage in browser
+    coverage: false
+
+    // optional, defaults to false, auto-starting tests on load
+    waitToRun: true,
   }
 }
 ```
+
+Lastly, you can set the environment variable `THEHELP_TEST_LEVEL` to customize the winston logging level for your tests. It defaulst to 'info.'
 
 ## License
 
