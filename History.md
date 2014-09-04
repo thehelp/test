@@ -7,6 +7,7 @@
 * Fixed: repeatable process for building blanket file. Previously manual tweaks were required for lib/vendor/blanket.js and lib/vendor/blanket-require.js
 * `phantom` and `mocha` server-side dependencies removed
 * `mocha` (client-side) updated to 1.21.4
+* New `bridge` file bundled into thehelp-test-coverage, path is `src/client/thehelp-test/bridge` to prevent module name collisions
 * Attempted update of `sinon`, but 1.10 introduces client-side requirejs problems. Updating will be very involved.
 * Update dev dependencies
 
