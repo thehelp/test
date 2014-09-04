@@ -11,6 +11,7 @@ define(['thehelp-test'], function(test) {
   describe('client/thehelp-test', function() {
 
     it('should have five keys', function() {
+      console.log('five keys test');
       expect(Object.keys(test)).to.have.length(5);
     });
 

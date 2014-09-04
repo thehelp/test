@@ -3,7 +3,9 @@
   "dependencies": {
     "chai": "1.9.1",
     "mocha": "1.21.4",
-    "requirejs": "2.1.14",
     "sinon": "1.9.1"
+  },
+  "devDependencies": {
+    "requirejs": "2.1.14"
   }
 }

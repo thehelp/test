@@ -19,36 +19,23 @@ define(function() {
     baseUrl: baseUrl,
     name: 'thehelp-test',
     paths: {
-      chai: 'lib/vendor/chai',
+      chai: 'bower_components/chai/chai',
       sinon: 'lib/vendor/sinon',
-      mocha: 'lib/vendor/mocha',
+      mocha: 'bower_components/mocha/mocha',
 
-      blanket: 'lib/vendor/blanket',
-      'blanket-require': 'lib/vendor/blanket-require',
-      falafel: 'lib/vendor/falafel',
+      blanket: 'node_modules/blanket/dist/qunit/blanket',
+      'grunt-blanket-mocha': 'node_modules/grunt-blanket-mocha/support/grunt-reporter',
 
       winston: 'src/client/shims/winston_shim',
       util: 'src/client/shims/util_shim'
     },
     shim: {
-      mocha: {exports: 'window.mocha'},
-
-      // This is what holds all the blanket-based code coverage stuff together.
-      // First, `falafel` is node module I browserified to work in the browser. Then
-      // I modified blanket itself to allow `falafel` to be injected via
-      // `blanket.parseAndModify`. Then I set some default filters on blanket, only
-      // instrumenting things under 'src/` and never things under 'test/' and '/lib'.
-      blanket: {
-        deps: ['falafel', 'mocha'],
-        init: function(falafel) {
-          var blanket = window.blanket;
-          blanket.parseAndModify = falafel;
-          blanket.options('filter', '/src/');
-          blanket.options('antifilter', '["/test/","/lib/"]');
-          return blanket;
-        }
+      mocha: {
+        exports: 'window.mocha'
       },
-      'blanket-require': ['blanket']
+      blanket: {
+        exports: 'window.blanket'
+      }
     }
   };
 

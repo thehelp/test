@@ -3,22 +3,15 @@
 // to enable code coverage for a requirejs-based mocha test run.
 
 define([
-  'thehelp-test',
-  'falafel',
   'blanket',
-  'blanket-require'
+  'src/client/bridge'
 ], function(
-  test,
-  falafel,
-  blanket,
-  blanketRequire
+  blanket
 ) {
 
   'use strict';
 
   return {
-    falafel: falafel,
-    blanket: blanket,
-    blanketRequire: blanketRequire
+    blanket: blanket
   };
 });

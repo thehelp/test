@@ -13,18 +13,11 @@ module.exports = function(grunt) {
 
   config.standardSetup();
 
-  internals.setupSetup(config, grunt);
   internals.setupDist(config, grunt);
   internals.setupClientTest(config, grunt);
 
-  grunt.registerTask('default',
-    ['setup', 'test', 'staticanalysis', 'style', 'doc', 'dist', 'client-test']
-  );
-};
-
-internals.setupSetup = function(config, grunt) {
-  config.registerCopyFromBower();
-  grunt.registerTask('setup', ['copy:from-bower']);
+  var tasks = config.defaultTasks;
+  grunt.registerTask('default', tasks.concat(['dist', 'client-test']));
 };
 
 internals.setupDist = function(config, grunt) {
@@ -42,14 +35,39 @@ internals.setupDist = function(config, grunt) {
 
   config.registerCopy({
     files: {
-      'dist/mocha.css': 'lib/vendor/mocha.css',
+      'dist/mocha.css': 'bower_components/mocha/mocha.css',
       'dist/thehelp-test-harness.js': 'src/client/harness.js',
       'dist/grunt-mocha-bridge.js':
         'node_modules/thehelp-client-project/node_modules/grunt-mocha/phantomjs/bridge.js'
     }
   });
 
-  grunt.registerTask('dist', ['requirejs', 'copy:default']);
+  // Turns out that r.js optimization has a problem when it puts a number of files into
+  // one final file. If it finds an anonymous `define()` (no name specified as the first
+  // parameter) it will put the name of the method it used to load that file in that
+  // anonymous define. In this case, the combined `blanket` file has its dependency
+  // `esprima` at the top, which uses UMD-syntax to define itself. Because it was all
+  // loaded as `blanket`, that's what r.js puts there. This results in no define for
+  // `blanket` at all.
+  grunt.task.registerTask('fix-coverage', 'Removes r.js-generated bugs', function() {
+    grunt.file.delete('dist/thehelp-test-coverage.min.js');
+
+    var path = 'dist/thehelp-test-coverage.js';
+    var contents = grunt.file.read(path);
+    contents = contents.replace(
+      'define(\'blanket\',[\'exports\'], factory);',
+      'define(\'esprima\',[\'exports\'], factory);'
+    );
+
+    contents = contents.replace(
+      '})();\n\n// bridge',
+      '})();\ndefine(\'blanket\', function() { return window.blanket; })\n// Bridge'
+    );
+
+    grunt.file.write(path, contents);
+  });
+
+  grunt.registerTask('dist', ['requirejs', 'copy:default', 'fix-coverage']);
 };
 
 internals.setupClientTest = function(config, grunt) {
@@ -61,3 +79,4 @@ internals.setupClientTest = function(config, grunt) {
   });
   grunt.registerTask('client-test', ['connect:test', 'mocha']);
 };
+
