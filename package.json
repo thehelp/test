@@ -35,7 +35,7 @@
     "blanket",
     "chai",
     "mocha",
-    "sinon"
+    "sinon",
     "code coverage"
   ],
 
