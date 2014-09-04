@@ -8,6 +8,8 @@
 * `phantom` and `mocha` server-side dependencies removed
 * `mocha` (client-side) updated to 1.21.4
 * New `bridge` file bundled into thehelp-test-coverage, path is `src/client/thehelp-test/bridge` to prevent module name collisions
+* `winston` and `util` dependencies removed for the client-side
+* travis-ci support
 * Attempted update of `sinon`, but 1.10 introduces client-side requirejs problems. Updating will be very involved.
 * Update dev dependencies
 
