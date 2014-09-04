@@ -24,7 +24,7 @@
     }
   },
 
-  "description": "Gets high quality grunt-based project automation in place very quickly",
+  "description": "One-step install for client/server testing tools: chai, mocha, sinon and code coverage via blanket",
   "keywords": [
     "grunt",
     "thehelp",
