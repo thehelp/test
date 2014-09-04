@@ -24,9 +24,28 @@
     }
   },
 
-  "author": "Scott Nonnenberg",
+  "description": "Gets high quality grunt-based project automation in place very quickly",
+  "keywords": [
+    "grunt",
+    "thehelp",
+    "testing",
+    "client/server",
+    "client",
+    "server",
+    "blanket",
+    "chai",
+    "mocha",
+    "sinon"
+    "code coverage"
+  ],
+
+  "author": "Scott Nonnenberg <scott@nonnenberg.com>",
+  "license": "MIT",
+
+  "homepage": "https://github.com/thehelp/test",
   "repository": {
     "type": "git",
-    "url": "git@github.com:NiKnight/thehelp.git"
-  }
+    "url": "git@github.com:thehelp/test.git"
+  },
+  "bugs": "https://github.com/thehelp/test/issues"
 }
