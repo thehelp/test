@@ -51,6 +51,10 @@ window.thehelp = {
   test: {
     files: ['the', 'test', 'file', 'paths', 'for', 'requirejs'],
     mochaCss: 'path to mocha.css',
+    blanket: { // optional blanket options, defaults are:
+      filter: '/src/',
+      antifilter: '["/bower_components/", "node_modules", "/test/","/lib/"]'
+    },
     coverage: false, // optional, defaults to true, for code coverage in browser via blanket
     waitToRun: true, // optional, defaults to false, auto-starting tests on load
   }
@@ -59,15 +63,16 @@ window.thehelp = {
 
 ## History
 
-### Next:
+### 3.0.0 (2014-09-04)
 
 * Breaking: Remove `GeneralTestHelper`, `Headless`, `HeadlessMocha`, `mochaReporter`, and `core`
-* Breaking: Client-side configuration now under
+* Breaking: Client-side configuration now all under `window.thehelp.test`, `test`->`files`
 * Breaking: `expect` can now be found on the top-level object instead of under `core`
-* Fixed: extra 'load' window event fired to get blanket to cover all files and start tests. Now we force blanket to start when all files are loaded.
-* Fixed: repeatable process for building blanket file
+* Fixed: extra 'load' window event no longer fired to get blanket to cover all files and start tests. Now we force blanket to start when all files are loaded.
+* Fixed: repeatable process for building blanket file. Previously manual tweaks were required for lib/vendor/blanket.js and lib/vendor/blanket-require.js
 * `phantom` and `mocha` server-side dependencies removed
 * `mocha` (client-side) updated to 1.21.4
+* Attempted update of `sinon`, but 1.10 introduces client-side requirejs problems. Updating will be very involved.
 * Update dev dependencies
 
 ### 2.0.13 (2014-06-25)
