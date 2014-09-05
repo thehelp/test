@@ -41,34 +41,39 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "title": "Setup",
                 "slug": "setup"
               },
-              "depth": 2,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Usage (node.js)",
-                    "slug": "usage-nodejs"
-                  },
-                  "depth": 3
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Usage (client-side)",
-                    "slug": "usage-client-side"
-                  },
-                  "depth": 3
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Advanced Config",
-                    "slug": "advanced-config"
-                  },
-                  "depth": 3
-                }
-              ]
+              "depth": 2
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Usage (node.js)",
+                "slug": "usage-nodejs"
+              },
+              "depth": 2
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Usage (client-side)",
+                "slug": "usage-client-side"
+              },
+              "depth": 2
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Advanced Config",
+                "slug": "advanced-config"
+              },
+              "depth": 2
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Detailed Docs",
+                "slug": "detailed-docs"
+              },
+              "depth": 2
             }, {
               "type": "heading",
               "data": {
@@ -99,34 +104,39 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "title": "Setup",
             "slug": "setup"
           },
-          "depth": 2,
-          "children": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Usage (node.js)",
-                "slug": "usage-nodejs"
-              },
-              "depth": 3
-            }, {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Usage (client-side)",
-                "slug": "usage-client-side"
-              },
-              "depth": 3
-            }, {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Advanced Config",
-                "slug": "advanced-config"
-              },
-              "depth": 3
-            }
-          ]
+          "depth": 2
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 2,
+            "title": "Usage (node.js)",
+            "slug": "usage-nodejs"
+          },
+          "depth": 2
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 2,
+            "title": "Usage (client-side)",
+            "slug": "usage-client-side"
+          },
+          "depth": 2
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 2,
+            "title": "Advanced Config",
+            "slug": "advanced-config"
+          },
+          "depth": 2
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 2,
+            "title": "Detailed Docs",
+            "slug": "detailed-docs"
+          },
+          "depth": 2
         }, {
           "type": "heading",
           "data": {

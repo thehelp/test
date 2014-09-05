@@ -17,7 +17,7 @@
 <pre><code>npm install thehelp-test --save-dev
 </code></pre>
 
-<h3 id="usage-nodejs">Usage (node.js)</h3>
+<h2 id="usage-nodejs">Usage (node.js)</h2>
 
 <p>To write tests very quickly, just pull in the project and start using it!</p>
 
@@ -37,7 +37,7 @@ winston.info('blah');
 expect(winston).to.have.deep.property('info.callCount', 1);
 </code></pre>
 
-<h3 id="usage-client-side">Usage (client-side)</h3>
+<h2 id="usage-client-side">Usage (client-side)</h2>
 
 <p>This same code also works on the client, assuming that you've set things up properly. you'll need to set up <code>requirejs</code> paths for several dependencies. Your client-side test setup file 'setup.js' can look like this:</p>
 
@@ -98,7 +98,7 @@ define(['thehelp-test', '../../../src/both/something'], function(test, something
 
 <p>For all the details and a working example, take a look at the integration tests under 'test/integration' in this project.</p>
 
-<h3 id="advanced-config">Advanced Config</h3>
+<h2 id="advanced-config">Advanced Config</h2>
 
 <p>You've got a few more options than just <code>files</code> and <code>mochaCss</code>. Here are the complete set of options:</p>
 
@@ -123,7 +123,11 @@ define(['thehelp-test', '../../../src/both/something'], function(test, something
 }
 </code></pre>
 
-<p>Lastly, you can set the environment variable <code>THEHELP_TEST_LEVEL</code> to customize the winston logging level for your tests. It defaulst to 'info.'</p>
+<p>Lastly, you can set the environment variable <code>THEHELP_TEST_LEVEL</code> to customize the winston logging level for your tests. It defaults to 'info.'</p>
+
+<h2 id="detailed-docs">Detailed Docs</h2>
+
+<p>Detailed docs be found at this project's GitHub Pages, thanks to <code>groc</code> and <code>thehelp-project</code>: <a href="http://thehelp.github.io/test/">http://thehelp.github.io/test/</a>. A good place to start is <a href="http://thehelp.github.io/test/src/client/thehelp-test/harness.html"><code>thehelp-test-harnest</code></a>.</p>
 
 <h2 id="license">License</h2>
 
