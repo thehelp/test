@@ -16,7 +16,7 @@ Include the project in your dependencies:
 npm install thehelp-test --save-dev
 ```
 
-### Usage (node.js)
+## Usage (node.js)
 
 To write tests very quickly, just pull in the project and start using it!
 
@@ -37,7 +37,7 @@ winston.info('blah');
 expect(winston).to.have.deep.property('info.callCount', 1);
 ```
 
-### Usage (client-side)
+## Usage (client-side)
 
 This same code also works on the client, assuming that you've set things up properly. you'll need to set up `requirejs` paths for several dependencies. Your client-side test setup file 'setup.js' can look like this:
 
@@ -101,7 +101,7 @@ define(['thehelp-test', '../../../src/both/something'], function(test, something
 
 For all the details and a working example, take a look at the integration tests under 'test/integration' in this project.
 
-### Advanced Config
+## Advanced Config
 
 You've got a few more options than just `files` and `mochaCss`. Here are the complete set of options:
 
@@ -127,7 +127,11 @@ window.thehelp = {
 }
 ```
 
-Lastly, you can set the environment variable `THEHELP_TEST_LEVEL` to customize the winston logging level for your tests. It defaulst to 'info.'
+Lastly, you can set the environment variable `THEHELP_TEST_LEVEL` to customize the winston logging level for your tests. It defaults to 'info.'
+
+## Detailed Docs
+
+Detailed docs be found at this project's GitHub Pages, thanks to `groc` and `thehelp-project`: [http://thehelp.github.io/test/](http://thehelp.github.io/test/). A good place to start is [`thehelp-test-harnest`](http://thehelp.github.io/test/src/client/thehelp-test/harness.html).
 
 ## License
 
