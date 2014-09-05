@@ -14,7 +14,7 @@ paths: {
 */
 
 define(['thehelp-test'], function(test) {
-  /*jshint maxcomplexity: 8 */
+  /*jshint maxcomplexity: 9 */
 
   'use strict';
 
