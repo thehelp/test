@@ -1,3 +1,7 @@
+## 3.0.1 (2014-09-05)
+
+* Re-add `Function.prototype.bind` polyfill for phantomjs in test harness
+
 ## 3.0.0 (2014-09-04)
 
 * Breaking: Remove `GeneralTestHelper`, `Headless`, `HeadlessMocha`, `mochaReporter`, and `core`
