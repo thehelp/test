@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="en"><head><title>index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="index"><meta name="groc-project-path" content="README.md"><meta name="groc-github-url" content="https://github.com/thehelp/test"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/thehelp/test/blob/master/README.md">README.md</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="thehelp-test">thehelp-test</h1>
+
+<p>One install gets you standard testing tools for both the client and the server, including client-side test coverage under <a href="http://requirejs.org/"><code>requirejs</code></a> via <a href="http://blanketjs.org/"><code>blanket</code></a>.</p>
+
+<h2 id="features">Features</h2>
+
+<ul>
+<li>Includes core testing libraries: <a href="http://visionmedia.github.io/mocha/"><code>mocha</code></a>, <a href="http://sinonjs.org/"><code>sinon</code></a>, and <a href="http://chaijs.com/"><code>chai</code></a> available on the client and on the server</li>
+<li>dist/thehelp-test-harness.js to make it easy to test on the client side, whether in the browser or via <a href="https://github.com/kmiyashiro/grunt-mocha"><code>grunt-mocha</code></a></li>
+<li><code>WinstonTestHelper</code> to verify that calls were made as expected and/or prevent logs from hitting console</li>
+</ul>
+
+<h2 id="setup">Setup</h2>
+
+<p>Include the project in your dependencies:</p>
+
+<pre><code>npm install thehelp-test --save-dev
+</code></pre>
+
+<h3 id="usage-nodejs">Usage (node.js)</h3>
+
+<p>To write tests very quickly, just pull in the project and start using it!</p>
+
+<p>Here's some node.js code using it:</p>
+
+<pre><code>var test = require('thehelp-test');
+var expect = test.expect;
+var sinon = test.sinon;
+var WinstonTestHelper = test.WinstonTestHelper;
+
+var stub = sinon.stub();
+stub();
+expect(stub).to.have.property('callCount', 1);
+
+var winston = new WinstonTestHelper({showLogs: false});
+winston.info('blah');
+expect(winston).to.have.deep.property('info.callCount', 1);
+</code></pre>
+
+<h3 id="usage-client-side">Usage (client-side)</h3>
+
+<p>This same code also works on the client, assuming that you've set things up properly. you'll need to set up <code>requirejs</code> paths for several dependencies. Your client-side test setup file 'setup.js' can look like this:</p>
+
+<pre><code class="javascript">'use strict';
+
+requirejs.config({
+  baseUrl: '/',
+  paths: {
+    'thehelp-test': 'node_modules/thehelp-test/dist/thehelp-test',
+
+    // if you'd like to measure test coverage
+    'thehelp-test-coverage': 'node_modules/thehelp-test/dist/thehelp-test-coverage',
+
+    // if you'd like to run tests from the command line grunt-mocha
+    'grunt-mocha-bridge': 'node_modules/thehelp-test/dist/thehelp-test-coverage'
+  }
+});
+
+require([window.entrypoint], function() {});
+</code></pre>
+
+<p>And the HTML file hosting your tests can look like this:</p>
+
+<pre><code class="html">&lt;script&gt;
+  window.thehelp = {
+    test: {
+      files: [
+        'test/unit/client/test_index',
+        'test/unit/both/test_something',
+      ],
+      mochaCss: '../../dist/mocha.css'
+    }
+  };
+&lt;/script&gt;
+
+&lt;script data-main='setup.js' src="../../bower_components/requirejs/require.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>The test file files themselves are easy:</p>
+
+<pre><code class="javascript">// basic boilerplate so this file runs client and server
+if (typeof define !== 'function') {
+  var define = require('amdefine')(module);
+}
+
+define(['thehelp-test', '../../../src/both/something'], function(test, something) {
+  'use strict';
+
+  var expect = test.expect;
+
+  describe('something', function() {
+    it('covered should return 20', function() {
+      expect(something.covered()).to.equal(20);
+    });
+  });
+});
+</code></pre>
+
+<p>For all the details and a working example, take a look at the integration tests under 'test/integration' in this project.</p>
+
+<h3 id="advanced-config">Advanced Config</h3>
+
+<p>You've got a few more options than just <code>files</code> and <code>mochaCss</code>. Here are the complete set of options:</p>
+
+<pre><code>window.thehelp = {
+  test: {
+    // these two are required:
+    files: ['the', 'test', 'file', 'paths', 'for', 'requirejs'],
+    mochaCss: 'path to mocha.css',
+
+    // optional blanket options, defaults are:
+    blanket: {
+      filter: '/src/',
+      antifilter: '["/bower_components/", "node_modules", "/test/","/lib/"]'
+    },
+
+    // optional, defaults to true, for code coverage in browser
+    coverage: false
+
+    // optional, defaults to false, auto-starting tests on load
+    waitToRun: true,
+  }
+}
+</code></pre>
+
+<p>Lastly, you can set the environment variable <code>THEHELP_TEST_LEVEL</code> to customize the winston logging level for your tests. It defaulst to 'info.'</p>
+
+<h2 id="license">License</h2>
+
+<p>(The MIT License)</p>
+
+<p>Copyright (c) 2013 Scott Nonnenberg &lt;scott@nonnenberg.com&gt;</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p></div></div></div></div></body></html>

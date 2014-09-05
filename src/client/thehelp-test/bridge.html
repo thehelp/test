@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="en"><head><title>src/client/thehelp-test/bridge</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../../"><meta name="groc-document-path" content="src/client/thehelp-test/bridge"><meta name="groc-project-path" content="src/client/thehelp-test/bridge.js"><meta name="groc-github-url" content="https://github.com/thehelp/test"><link rel="stylesheet" type="text/css" media="all" href="../../../assets/style.css"><script type="text/javascript" src="../../../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/thehelp/test/blob/master/src/client/thehelp-test/bridge.js">src/client/thehelp-test/bridge.js</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="bridge">bridge</h1>
+
+<p>A bridge between <code>mocha</code> and <code>blanket</code>. We register a reporter that sends <code>mocha</code> test
+information to <code>blanket</code>, then override <code>mocha</code>'s <code>run()</code> method, first ensuring that
+all source files have been loaded and instrumented by <code>blanket</code>.</p></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;mocha&#39;</span><span class="p">,</span> <span class="s1">&#39;blanket&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">mocha</span><span class="p">,</span> <span class="nx">blanket</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+  <span class="kd">var</span> <span class="nx">Parent</span> <span class="o">=</span> <span class="nx">mocha</span><span class="p">.</span><span class="nx">_reporter</span><span class="p">;</span>
+
+  <span class="kd">function</span> <span class="nx">BlanketReporter</span><span class="p">(</span><span class="nx">runner</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">runner</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">blanket</span><span class="p">.</span><span class="nx">setupCoverage</span><span class="p">();</span>
+    <span class="p">});</span>
+
+    <span class="nx">runner</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">blanket</span><span class="p">.</span><span class="nx">onTestsDone</span><span class="p">();</span>
+    <span class="p">});</span>
+
+    <span class="nx">runner</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;suite&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">blanket</span><span class="p">.</span><span class="nx">onModuleStart</span><span class="p">();</span>
+    <span class="p">});</span>
+
+    <span class="nx">runner</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">blanket</span><span class="p">.</span><span class="nx">onTestStart</span><span class="p">();</span>
+    <span class="p">});</span>
+
+    <span class="nx">runner</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;test end&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">test</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">blanket</span><span class="p">.</span><span class="nx">onTestDone</span><span class="p">(</span><span class="nx">test</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">tests</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="nx">test</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="s1">&#39;passed&#39;</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">Parent</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">//to avoid crashes in mocha on display of results</span>
+  <span class="nx">BlanketReporter</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">suiteURL</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">suite</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">&#39;?grep=&#39;</span> <span class="o">+</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">suite</span><span class="p">.</span><span class="nx">fullTitle</span><span class="p">());</span>
+  <span class="p">};</span>
+
+  <span class="nx">BlanketReporter</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">testURL</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">test</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">&#39;?grep=&#39;</span> <span class="o">+</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">test</span><span class="p">.</span><span class="nx">fullTitle</span><span class="p">());</span>
+  <span class="p">};</span>
+
+  <span class="nx">mocha</span><span class="p">.</span><span class="nx">reporter</span><span class="p">(</span><span class="nx">BlanketReporter</span><span class="p">);</span>
+
+  <span class="kd">var</span> <span class="nx">old</span> <span class="o">=</span> <span class="nx">mocha</span><span class="p">.</span><span class="nx">run</span><span class="p">;</span>
+  <span class="nx">mocha</span><span class="p">.</span><span class="nx">run</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">blanket</span><span class="p">.</span><span class="nx">_loadSourceFiles</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">old</span><span class="p">(</span><span class="nx">cb</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">};</span>
+
+<span class="p">});</span></div></div></div></div></body></html>
