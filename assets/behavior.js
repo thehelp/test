@@ -195,6 +195,22 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 2,
+            "title": "3.0.2 (2014-09-05)",
+            "slug": "302-2014-09-05"
+          },
+          "depth": 2
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 2,
+            "title": "3.0.1 (2014-09-05)",
+            "slug": "301-2014-09-05"
+          },
+          "depth": 2
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 2,
             "title": "3.0.0 (2014-09-04)",
             "slug": "300-2014-09-04"
           },
