@@ -64,6 +64,8 @@ And the HTML file hosting your tests can look like this:
 
 ```html
 <script>
+  window.entrypoint = '../../node_modules/thehelp-test/dist/thehelp-test-harness';
+
   window.thehelp = {
     test: {
       files: [
