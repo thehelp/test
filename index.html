@@ -62,6 +62,8 @@ require([window.entrypoint], function() {});
 <p>And the HTML file hosting your tests can look like this:</p>
 
 <pre><code class="html">&lt;script&gt;
+  window.entrypoint = '../../node_modules/thehelp-test/dist/thehelp-test-harness';
+
   window.thehelp = {
     test: {
       files: [
