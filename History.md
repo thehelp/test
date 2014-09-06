@@ -1,3 +1,7 @@
+## 3.0.2 (2014-09-05)
+
+* Updated harness file didn't seem to make it into the npm package. Re-releasing.
+
 ## 3.0.1 (2014-09-05)
 
 * Re-add `Function.prototype.bind` polyfill for phantomjs in test harness
