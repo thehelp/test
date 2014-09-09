@@ -3,7 +3,7 @@
 
 define([
   'src/both/core',
-  'src/both/winston_test_helper',
+  'src/both/thehelp-test/winston_test_helper',
   'sinon',
   'mocha',
   'chai'

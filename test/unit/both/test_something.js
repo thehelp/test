@@ -11,7 +11,9 @@ define(['thehelp-test', '../../../src/both/something'], function(test, something
   describe('both/something', function() {
 
     it('covered should return 20', function() {
-      console.log('something test');
+      if (typeof console !== 'undefined') {
+        console.log('something test');
+      }
       expect(something.covered()).to.equal(20);
     });
 

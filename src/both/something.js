@@ -16,14 +16,18 @@ define(function() {
     covered: function() {
       var y = 17;
       y += 3;
-      console.log('y: ' + y);
+      if (typeof console !== 'undefined') {
+        console.log('y: ' + y);
+      }
       return y;
     },
 
     notCovered: function() {
       var x = 4;
       x += 1;
-      console.log('x: ' + x);
+      if (typeof console !== 'undefined') {
+        console.log('x: ' + x);
+      }
       return x;
     }
   };

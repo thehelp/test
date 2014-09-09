@@ -20,7 +20,7 @@ define(['sinon'], function(sinon) {
 
     this.showLogs = options.showLogs;
     this.log = function(text) {
-      if (console.log) {
+      if (typeof console !== 'undefined' && console.log) {
         var date = new Date();
         console.log(date.toJSON(), text);
       }

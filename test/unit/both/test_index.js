@@ -10,7 +10,9 @@ define(['thehelp-test'], function(test) {
 
   describe('both/thehelp-test', function() {
     it('should have property expect', function() {
-      console.log('expect test');
+      if (typeof console !== 'undefined') {
+        console.log('expect test');
+      }
       expect(test).to.have.property('expect');
     });
 
