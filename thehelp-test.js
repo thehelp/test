@@ -2,13 +2,12 @@
 // This file pulls in everything needed for testing on the client side.
 
 define([
-  'src/both/core',
   'src/both/thehelp-test/winston_test_helper',
   'sinon',
   'mocha',
-  'chai'
+  'chai',
+  'src/client/thehelp-test/sauce_reporter'
 ], function(
-  core,
   WinstonTestHelper,
   sinon,
   mocha,

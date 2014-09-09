@@ -1,5 +1,4 @@
 
-require('../both/core'); // we just load it to run the sources
 var chai = require('chai');
 
 // Set up the console transport to the output we're looking for.
@@ -15,5 +14,5 @@ module.exports = {
   expect: chai.expect,
   chai: chai,
   sinon: require('sinon'),
-  WinstonTestHelper: require('../both/winston_test_helper')
+  WinstonTestHelper: require('../both/thehelp-test/winston_test_helper')
 };
