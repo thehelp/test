@@ -141,6 +141,18 @@ Lastly, you can set the environment variable `THEHELP_TEST_LEVEL` to customize t
 
 Detailed docs be found at this project's GitHub Pages, thanks to `groc` and `thehelp-project`: [http://thehelp.github.io/test/](http://thehelp.github.io/test/). A good place to start is [`thehelp-test-harnest`](http://thehelp.github.io/test/src/client/thehelp-test/harness.html).
 
+## Contributing changes
+
+The end-to-end tests under 'test/integration' will be your friend. :0) It will help you ensure that the client-side part of this library is working properly. Use `grunt connect:keepalive` to test it in your browser.
+
+Please cover as many browsers as you can, or use `grunt cross-browser` with your [Sauce Credentials in env.json](https://github.com/thehelp/client-project). When you have some changes ready, please submit a pull request with:
+
+* Justification - why is this change worthwhile? Link to issues, use code samples, etc.
+* Documentation changes for your code updates. Be sure to check the groc-generated HTML with `grunt doc`
+* A description of how you tested the change. Don't forget about the very-useful `npm link` command :0)
+
+I may ask you to use a `git rebase` to ensure that your commits are not interleaved with commits already in the history. And of course, make sure `grunt` completes successfully. :0)
+
 ## License
 
 (The MIT License)
