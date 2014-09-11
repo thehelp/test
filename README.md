@@ -8,6 +8,12 @@ One install gets you standard testing tools for both the client and the server, 
 * dist/thehelp-test-harness.js to make it easy to test on the client side, whether in the browser or via [`grunt-mocha`](https://github.com/kmiyashiro/grunt-mocha)
 * `WinstonTestHelper` to verify that calls were made as expected and/or prevent logs from hitting console
 
+## Supported browsers
+
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/thehelp-test.svg)](https://saucelabs.com)
+
+Sadly, `chai`, the assertion library used in this project, [doesn't support IE8 (okay, maybe a little)](https://github.com/chaijs/chai/issues/124).
+
 ## Setup
 
 Include the project in your dependencies:
@@ -105,7 +111,7 @@ For all the details and a working example, take a look at the integration tests 
 
 ## Advanced Config
 
-You've got a few more options than just `files` and `mochaCss`. Here are the complete set of options:
+You've got a few more options than just `files` and `mochaCss` on the client side. Here are the complete set of options:
 
 ```
 window.thehelp = {
@@ -124,7 +130,7 @@ window.thehelp = {
     coverage: false
 
     // optional, defaults to false, auto-starting tests on load
-    waitToRun: true,
+    waitToRun: true
   }
 }
 ```
