@@ -14,7 +14,7 @@ module.exports = function(grunt) {
   config.standardSetup();
 
   internals.setupDist(config, grunt);
-  internals.setupClientTest(config, grunt);
+  internals.setupClientTesting(config, grunt);
 
   var tasks = config.defaultTasks;
   grunt.registerTask('default', tasks.concat(['dist', 'client-test']));
@@ -22,11 +22,13 @@ module.exports = function(grunt) {
 
 internals.setupDist = function(config, grunt) {
   var options = require('./src/client/thehelp-test/config');
+
   config.registerOptimizeLibrary({
     source: 'thehelp-test',
     targetPath: 'dist',
     config: options
   });
+
   config.registerOptimizeLibrary({
     source: 'thehelp-test-coverage',
     targetPath: 'dist',
@@ -40,6 +42,14 @@ internals.setupDist = function(config, grunt) {
       'dist/thehelp-test-harness.js': 'src/client/thehelp-test/harness.js',
       'dist/grunt-mocha-bridge.js':
         'node_modules/thehelp-client-project/node_modules/grunt-mocha/phantomjs/bridge.js'
+    }
+  });
+
+  config.registerPreambleForDist({
+    src: 'dist/**/thehelp-test*.js',
+    comments: {
+      'thehelp-test\\.': 'Includes mocha, chai and sinon.',
+      'thehelp-test-coverage\\.': 'Includes blanket.'
     }
   });
 
@@ -68,10 +78,12 @@ internals.setupDist = function(config, grunt) {
     grunt.file.write(path, contents);
   });
 
-  grunt.registerTask('dist', ['requirejs', 'copy:default', 'fix-coverage']);
+  grunt.registerTask('dist', [
+    'requirejs', 'copy:default', 'fix-coverage', 'preamble-for-dist'
+  ]);
 };
 
-internals.setupClientTest = function(config, grunt) {
+internals.setupClientTesting = function(config, grunt) {
   config.registerMocha({
     urls: [
       'http://localhost:3001/test/integration/dev.html',
@@ -79,5 +91,14 @@ internals.setupClientTest = function(config, grunt) {
     ]
   });
   grunt.registerTask('client-test', ['connect:test', 'mocha']);
+
+  config.registerSauce({
+    urls: [
+      'http://localhost:3001/test/integration/dist.html'
+    ]
+  });
+
+  //we run client-test first to ensure we don't sent super-broken tests to Sauce Labs
+  grunt.registerTask('cross-browser', ['client-test', 'sauce']);
 };
 
