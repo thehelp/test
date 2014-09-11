@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/thehelp/test.svg?branch=master)](https://travis-ci.org/thehelp/test)
+
 # thehelp-test
 
 One install gets you standard testing tools for both the client and the server, including client-side test coverage under [`requirejs`](http://requirejs.org/) via [`blanket`](http://blanketjs.org/).
