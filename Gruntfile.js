@@ -95,7 +95,8 @@ internals.setupClientTesting = function(config, grunt) {
   config.registerSauce({
     urls: [
       'http://localhost:3001/test/integration/dist.html'
-    ]
+    ],
+    browsers: config.saucePlatforms.all
   });
 
   //we run client-test first to ensure we don't sent super-broken tests to Sauce Labs
