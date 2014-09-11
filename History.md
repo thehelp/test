@@ -1,3 +1,11 @@
+## 3.1.0 (2014-09-10)
+
+* New: Support for reporting mocha test results to [Sauce Labs](http://saucelabs.com)
+* `chai` diffs are no longer suppressed
+* Support IE9 in tests: `console.log` only if console is defined, dev.html/dist.html start with proper doctype to get IE9 into standards mode
+* 'src/both/core' module removed from thehelp-test.js
+* 'src/both/winston_test_helper' module moved to 'src/both/thehelp-test/winston_test_helper' to prevent collisions
+
 ## 3.0.2 (2014-09-05)
 
 * Updated harness file didn't seem to make it into the npm package. Re-releasing.
