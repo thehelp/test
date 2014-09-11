@@ -7,6 +7,8 @@ One install gets you standard testing tools for both the client and the server, 
 * Includes core testing libraries: [`mocha`](http://visionmedia.github.io/mocha/), [`sinon`](http://sinonjs.org/), and [`chai`](http://chaijs.com/) available on the client and on the server
 * dist/thehelp-test-harness.js to make it easy to test on the client side, whether in the browser or via [`grunt-mocha`](https://github.com/kmiyashiro/grunt-mocha)
 * `WinstonTestHelper` to verify that calls were made as expected and/or prevent logs from hitting console
+* Easy setup for `blanket` on the client-side, with some key tweaks to make it work seamlessly under `requirejs`
+* Support for reporting mocha test results to [Sauce Labs](https://saucelabs.com)
 
 ## Supported browsers
 
