@@ -14,7 +14,7 @@ One install gets you standard testing tools for both the client and the server, 
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/thehelp-test.svg)](https://saucelabs.com)
 
-Sadly, `chai`, the assertion library used in this project, [doesn't support IE8 (okay, maybe a little)](https://github.com/chaijs/chai/issues/124).
+Sadly, `chai`, the assertion library used in this project, [doesn't support IE8 (okay, maybe a little)](https://github.com/chaijs/chai/issues/124). Has been tested on as low as iOS 4.3, but [usage is so low](http://caniuse.com/usage_table.php) for pre-6.0 versions that they are not part of the standard run.
 
 ## Setup
 
