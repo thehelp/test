@@ -19,8 +19,8 @@ define(['thehelp-test'], function(test) {
   'use strict';
 
   // Because PhantomJS doesn't support function.bind we polyfill it
-  // https://groups.google.com/forum/#!msg/phantomjs/r0hPOmnCUpc/uxusqsl2LNoJ
-  // https://github.com/ariya/phantomjs/issues/10522
+  // <https://groups.google.com/forum/#!msg/phantomjs/r0hPOmnCUpc/uxusqsl2LNoJ>
+  // <https://github.com/ariya/phantomjs/issues/10522>
   Function.prototype.bind = Function.prototype.bind || function(target) {
     var _this = this;
     return function() {
