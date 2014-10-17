@@ -1,3 +1,9 @@
+## 3.2.0 (2014-10-16)
+
+* `winston` is no longer a dependency. we'll set it up for your tests if we can `require()` it
+* `WinstonTestHelper` now allows you to pass in an object that looks like `winston` (with the right functions on it)
+* Remove `lodash` as a dependency
+
 ## 3.1.0 (2014-09-10)
 
 * New: Support for reporting mocha test results to [Sauce Labs](http://saucelabs.com)
