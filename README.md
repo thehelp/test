@@ -11,6 +11,7 @@ One install gets you standard testing tools for both the client and the server, 
 * `WinstonTestHelper` to verify that calls were made as expected and/or prevent logs from hitting console
 * Easy setup for `blanket` on the client-side, with some key tweaks to make it work seamlessly under `requirejs`
 * Support for reporting mocha test results to [Sauce Labs](https://saucelabs.com)
+* If [`winston`](https://github.com/flatiron/winston) is installed, automatic setup of `winston` console logging transport both for the default logger and default collection.
 
 ## Supported browsers
 
