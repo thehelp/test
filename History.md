@@ -1,3 +1,7 @@
+## 3.3.0 (2014-10-19)
+
+* If `winston` is installed, we now set up its console transport for the default collection (`winston.loggers.get()`) as well as for the default logger (`winston.info()`).
+
 ## 3.2.0 (2014-10-16)
 
 * `winston` is no longer a dependency. we'll set it up for your tests if we can `require()` it
