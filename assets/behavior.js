@@ -16,13 +16,16 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "projectPath": "README.md",
         "targetPath": "index",
         "pageTitle": "index",
-        "firstHeader": {
+        "title": "index"
+      },
+      "depth": 1,
+      "outline": [
+        {
           "type": "heading",
           "data": {
             "level": 1,
             "title": "thehelp-test",
-            "slug": "thehelp-test",
-            "isFileHeader": true
+            "slug": "thehelp-test"
           },
           "depth": 1,
           "children": [
@@ -32,6 +35,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "level": 2,
                 "title": "Features",
                 "slug": "features"
+              },
+              "depth": 2
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Supported browsers",
+                "slug": "supported-browsers"
               },
               "depth": 2
             }, {
@@ -78,73 +89,20 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "type": "heading",
               "data": {
                 "level": 2,
+                "title": "Contributing changes",
+                "slug": "contributing-changes"
+              },
+              "depth": 2
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 2,
                 "title": "License",
                 "slug": "license"
               },
               "depth": 2
             }
           ]
-        },
-        "title": "thehelp-test"
-      },
-      "depth": 1,
-      "outline": [
-        {
-          "type": "heading",
-          "data": {
-            "level": 2,
-            "title": "Features",
-            "slug": "features"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 2,
-            "title": "Setup",
-            "slug": "setup"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 2,
-            "title": "Usage (node.js)",
-            "slug": "usage-nodejs"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 2,
-            "title": "Usage (client-side)",
-            "slug": "usage-client-side"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 2,
-            "title": "Advanced Config",
-            "slug": "advanced-config"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 2,
-            "title": "Detailed Docs",
-            "slug": "detailed-docs"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 2,
-            "title": "License",
-            "slug": "license"
-          },
-          "depth": 2
         }
       ]
     }, {
@@ -192,6 +150,30 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
       "depth": 1,
       "outline": [
         {
+          "type": "heading",
+          "data": {
+            "level": 2,
+            "title": "3.3.0 (2014-10-19)",
+            "slug": "330-2014-10-19"
+          },
+          "depth": 2
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 2,
+            "title": "3.2.0 (2014-10-16)",
+            "slug": "320-2014-10-16"
+          },
+          "depth": 2
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 2,
+            "title": "3.1.0 (2014-09-10)",
+            "slug": "310-2014-09-10"
+          },
+          "depth": 2
+        }, {
           "type": "heading",
           "data": {
             "level": 2,
@@ -381,35 +363,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "projectPath": "src/both/core.js",
-                "targetPath": "src/both/core",
-                "pageTitle": "src/both/core",
-                "firstHeader": {
-                  "type": "heading",
-                  "data": {
-                    "level": 1,
-                    "title": "core",
-                    "slug": "core",
-                    "isFileHeader": true
-                  },
-                  "depth": 1
-                },
-                "title": "core"
-              },
-              "depth": 3,
-              "outline": []
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
                 "projectPath": "src/both/something.js",
                 "targetPath": "src/both/something",
                 "pageTitle": "src/both/something",
@@ -428,34 +381,62 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "depth": 3,
               "outline": []
             }, {
-              "type": "file",
+              "type": "folder",
               "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "projectPath": "src/both/winston_test_helper.js",
-                "targetPath": "src/both/winston_test_helper",
-                "pageTitle": "src/both/winston_test_helper",
-                "firstHeader": {
-                  "type": "heading",
-                  "data": {
-                    "level": 1,
-                    "title": "WinstonTestHelper",
-                    "slug": "winstontesthelper",
-                    "isFileHeader": true
-                  },
-                  "depth": 1
-                },
-                "title": "WinstonTestHelper"
+                "path": "src/both/thehelp-test",
+                "title": "thehelp-test"
               },
               "depth": 3,
-              "outline": []
+              "children": [
+                {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "projectPath": "src/both/thehelp-test/winston_test_helper.js",
+                    "targetPath": "src/both/thehelp-test/winston_test_helper",
+                    "pageTitle": "src/both/thehelp-test/winston_test_helper",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "WinstonTestHelper",
+                        "slug": "winstontesthelper",
+                        "isFileHeader": true
+                      },
+                      "depth": 1
+                    },
+                    "title": "WinstonTestHelper"
+                  },
+                  "depth": 4,
+                  "outline": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "Public methods",
+                        "slug": "public-methods"
+                      },
+                      "depth": 1
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "Helper methods",
+                        "slug": "helper-methods"
+                      },
+                      "depth": 1
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }, {
@@ -561,6 +542,35 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   },
                   "depth": 4,
                   "outline": []
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "projectPath": "src/client/thehelp-test/sauce_reporter.js",
+                    "targetPath": "src/client/thehelp-test/sauce_reporter",
+                    "pageTitle": "src/client/thehelp-test/sauce_reporter",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "sauce-reporter",
+                        "slug": "sauce-reporter",
+                        "isFileHeader": true
+                      },
+                      "depth": 1
+                    },
+                    "title": "sauce-reporter"
+                  },
+                  "depth": 4,
+                  "outline": []
                 }
               ]
             }
@@ -589,6 +599,35 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "targetPath": "src/server/index",
                 "pageTitle": "src/server/index",
                 "title": "index"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "projectPath": "src/server/setup_winston.js",
+                "targetPath": "src/server/setup_winston",
+                "pageTitle": "src/server/setup_winston",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "winston",
+                    "slug": "winston",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "winston"
               },
               "depth": 3,
               "outline": []

@@ -13,7 +13,7 @@
   <span class="nx">config</span><span class="p">.</span><span class="nx">standardSetup</span><span class="p">();</span>
 
   <span class="nx">internals</span><span class="p">.</span><span class="nx">setupDist</span><span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">grunt</span><span class="p">);</span>
-  <span class="nx">internals</span><span class="p">.</span><span class="nx">setupClientTest</span><span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">grunt</span><span class="p">);</span>
+  <span class="nx">internals</span><span class="p">.</span><span class="nx">setupClientTesting</span><span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">grunt</span><span class="p">);</span>
 
   <span class="kd">var</span> <span class="nx">tasks</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">defaultTasks</span><span class="p">;</span>
   <span class="nx">grunt</span><span class="p">.</span><span class="nx">registerTask</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="nx">tasks</span><span class="p">.</span><span class="nx">concat</span><span class="p">([</span><span class="s1">&#39;dist&#39;</span><span class="p">,</span> <span class="s1">&#39;client-test&#39;</span><span class="p">]));</span>
@@ -21,11 +21,13 @@
 
 <span class="nx">internals</span><span class="p">.</span><span class="nx">setupDist</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">grunt</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./src/client/thehelp-test/config&#39;</span><span class="p">);</span>
+
   <span class="nx">config</span><span class="p">.</span><span class="nx">registerOptimizeLibrary</span><span class="p">({</span>
     <span class="nx">source</span><span class="o">:</span> <span class="s1">&#39;thehelp-test&#39;</span><span class="p">,</span>
     <span class="nx">targetPath</span><span class="o">:</span> <span class="s1">&#39;dist&#39;</span><span class="p">,</span>
     <span class="nx">config</span><span class="o">:</span> <span class="nx">options</span>
   <span class="p">});</span>
+
   <span class="nx">config</span><span class="p">.</span><span class="nx">registerOptimizeLibrary</span><span class="p">({</span>
     <span class="nx">source</span><span class="o">:</span> <span class="s1">&#39;thehelp-test-coverage&#39;</span><span class="p">,</span>
     <span class="nx">targetPath</span><span class="o">:</span> <span class="s1">&#39;dist&#39;</span><span class="p">,</span>
@@ -39,6 +41,14 @@
       <span class="s1">&#39;dist/thehelp-test-harness.js&#39;</span><span class="o">:</span> <span class="s1">&#39;src/client/thehelp-test/harness.js&#39;</span><span class="p">,</span>
       <span class="s1">&#39;dist/grunt-mocha-bridge.js&#39;</span><span class="o">:</span>
         <span class="s1">&#39;node_modules/thehelp-client-project/node_modules/grunt-mocha/phantomjs/bridge.js&#39;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="nx">config</span><span class="p">.</span><span class="nx">registerPreambleForDist</span><span class="p">({</span>
+    <span class="nx">src</span><span class="o">:</span> <span class="s1">&#39;dist/**/thehelp-test*.js&#39;</span><span class="p">,</span>
+    <span class="nx">comments</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s1">&#39;thehelp-test\\.&#39;</span><span class="o">:</span> <span class="s1">&#39;Includes mocha, chai and sinon.&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;thehelp-test-coverage\\.&#39;</span><span class="o">:</span> <span class="s1">&#39;Includes blanket.&#39;</span>
     <span class="p">}</span>
   <span class="p">});</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Turns out that r.js optimization has a problem when it puts a number of files into
 one final file. If it finds an anonymous <code>define()</code> (no name specified as the first
@@ -64,10 +74,12 @@ loaded as <code>blanket</code>, that's what r.js puts there. This results in no 
     <span class="nx">grunt</span><span class="p">.</span><span class="nx">file</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">path</span><span class="p">,</span> <span class="nx">contents</span><span class="p">);</span>
   <span class="p">});</span>
 
-  <span class="nx">grunt</span><span class="p">.</span><span class="nx">registerTask</span><span class="p">(</span><span class="s1">&#39;dist&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;requirejs&#39;</span><span class="p">,</span> <span class="s1">&#39;copy:default&#39;</span><span class="p">,</span> <span class="s1">&#39;fix-coverage&#39;</span><span class="p">]);</span>
+  <span class="nx">grunt</span><span class="p">.</span><span class="nx">registerTask</span><span class="p">(</span><span class="s1">&#39;dist&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;requirejs&#39;</span><span class="p">,</span> <span class="s1">&#39;copy:default&#39;</span><span class="p">,</span> <span class="s1">&#39;fix-coverage&#39;</span><span class="p">,</span> <span class="s1">&#39;preamble-for-dist&#39;</span>
+  <span class="p">]);</span>
 <span class="p">};</span>
 
-<span class="nx">internals</span><span class="p">.</span><span class="nx">setupClientTest</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">grunt</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">internals</span><span class="p">.</span><span class="nx">setupClientTesting</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">grunt</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">config</span><span class="p">.</span><span class="nx">registerMocha</span><span class="p">({</span>
     <span class="nx">urls</span><span class="o">:</span> <span class="p">[</span>
       <span class="s1">&#39;http://localhost:3001/test/integration/dev.html&#39;</span><span class="p">,</span>
@@ -75,4 +87,14 @@ loaded as <code>blanket</code>, that's what r.js puts there. This results in no 
     <span class="p">]</span>
   <span class="p">});</span>
   <span class="nx">grunt</span><span class="p">.</span><span class="nx">registerTask</span><span class="p">(</span><span class="s1">&#39;client-test&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;connect:test&#39;</span><span class="p">,</span> <span class="s1">&#39;mocha&#39;</span><span class="p">]);</span>
+
+  <span class="nx">config</span><span class="p">.</span><span class="nx">registerSauce</span><span class="p">({</span>
+    <span class="nx">urls</span><span class="o">:</span> <span class="p">[</span>
+      <span class="s1">&#39;http://localhost:3001/test/integration/dist.html&#39;</span>
+    <span class="p">],</span>
+    <span class="nx">browsers</span><span class="o">:</span> <span class="nx">config</span><span class="p">.</span><span class="nx">saucePlatforms</span><span class="p">.</span><span class="nx">all</span>
+  <span class="p">});</span>
+
+  <span class="c1">//we run client-test first to ensure we don&#39;t sent super-broken tests to Sauce Labs</span>
+  <span class="nx">grunt</span><span class="p">.</span><span class="nx">registerTask</span><span class="p">(</span><span class="s1">&#39;cross-browser&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;client-test&#39;</span><span class="p">,</span> <span class="s1">&#39;sauce&#39;</span><span class="p">]);</span>
 <span class="p">};</span></div></div></div></div></body></html>

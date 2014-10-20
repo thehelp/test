@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="en"><head><title>src/client/thehelp-test/sauce_reporter</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../../"><meta name="groc-document-path" content="src/client/thehelp-test/sauce_reporter"><meta name="groc-project-path" content="src/client/thehelp-test/sauce_reporter.js"><meta name="groc-github-url" content="https://github.com/thehelp/test"><link rel="stylesheet" type="text/css" media="all" href="../../../assets/style.css"><script type="text/javascript" src="../../../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/thehelp/test/blob/master/src/client/thehelp-test/sauce_reporter.js">src/client/thehelp-test/sauce_reporter.js</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="sauce-reporter">sauce-reporter</h1>
+
+<p>A module to ensure that mocha test results are available to
+<a href="https://saucelabs.com">Sauce Labs'</a> test runner.
+Inspired by the
+<a href="https://github.com/axemclion/grunt-saucelabs#test-result-details-with-mocha">example</a>
+code provided by <code>grunt-saucelabs</code></p></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;mocha&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">mocha</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+  <span class="kd">var</span> <span class="nx">Parent</span> <span class="o">=</span> <span class="nx">mocha</span><span class="p">.</span><span class="nx">_reporter</span><span class="p">;</span>
+
+  <span class="kd">var</span> <span class="nx">failedTests</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="kd">var</span> <span class="nx">flattenTitles</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">flattenTitles</span><span class="p">(</span><span class="nx">test</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">titles</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nx">test</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">title</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">titles</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">test</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">title</span><span class="p">);</span>
+      <span class="nx">test</span> <span class="o">=</span> <span class="nx">test</span><span class="p">.</span><span class="nx">parent</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">titles</span><span class="p">.</span><span class="nx">reverse</span><span class="p">();</span>
+  <span class="p">};</span>
+
+  <span class="kd">var</span> <span class="nx">logFailureForSauce</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">logFailureForSauce</span><span class="p">(</span><span class="nx">test</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>widening the net for IE9 and Safari 5</p></div></div><div class="code"><div class="wrapper">    <span class="kd">var</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">err</span><span class="p">.</span><span class="nx">message</span> <span class="o">||</span> <span class="nx">err</span><span class="p">.</span><span class="nx">description</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+    <span class="nx">failedTests</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+      <span class="nx">result</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="nx">name</span><span class="o">:</span> <span class="nx">test</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span>
+      <span class="nx">message</span><span class="o">:</span> <span class="nx">message</span><span class="p">,</span>
+      <span class="nx">stack</span><span class="o">:</span> <span class="nx">err</span><span class="p">.</span><span class="nx">stack</span> <span class="o">||</span> <span class="nx">message</span><span class="p">,</span>
+      <span class="nx">titles</span><span class="o">:</span> <span class="nx">flattenTitles</span><span class="p">(</span><span class="nx">test</span><span class="p">)</span>
+    <span class="p">});</span>
+  <span class="p">};</span>
+
+  <span class="kd">function</span> <span class="nx">SauceReporter</span><span class="p">(</span><span class="nx">runner</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">runner</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nb">window</span><span class="p">.</span><span class="nx">mochaResults</span> <span class="o">=</span> <span class="nx">runner</span><span class="p">.</span><span class="nx">stats</span> <span class="o">||</span> <span class="p">{};</span>
+      <span class="nb">window</span><span class="p">.</span><span class="nx">mochaResults</span><span class="p">.</span><span class="nx">reports</span> <span class="o">=</span> <span class="nx">failedTests</span><span class="p">;</span>
+    <span class="p">});</span>
+
+    <span class="nx">runner</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;fail&#39;</span><span class="p">,</span> <span class="nx">logFailureForSauce</span><span class="p">);</span>
+
+    <span class="nx">Parent</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">//to avoid crashes in mocha on display of results</span>
+  <span class="nx">SauceReporter</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">suiteURL</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">suite</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">&#39;?grep=&#39;</span> <span class="o">+</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">suite</span><span class="p">.</span><span class="nx">fullTitle</span><span class="p">());</span>
+  <span class="p">};</span>
+
+  <span class="nx">SauceReporter</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">testURL</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">test</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">&#39;?grep=&#39;</span> <span class="o">+</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">test</span><span class="p">.</span><span class="nx">fullTitle</span><span class="p">());</span>
+  <span class="p">};</span>
+
+  <span class="nx">mocha</span><span class="p">.</span><span class="nx">reporter</span><span class="p">(</span><span class="nx">SauceReporter</span><span class="p">);</span>
+
+<span class="p">});</span></div></div></div></div></body></html>

@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><title>index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="index"><meta name="groc-project-path" content="README.md"><meta name="groc-github-url" content="https://github.com/thehelp/test"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/thehelp/test/blob/master/README.md">README.md</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="thehelp-test">thehelp-test</h1>
+<!DOCTYPE html><html lang="en"><head><title>index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="index"><meta name="groc-project-path" content="README.md"><meta name="groc-github-url" content="https://github.com/thehelp/test"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/thehelp/test/blob/master/README.md">README.md</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p><a href="https://travis-ci.org/thehelp/test"><img src="https://travis-ci.org/thehelp/test.svg?branch=master" alt="Build Status" title="" /></a></p>
+
+<h1 id="thehelp-test">thehelp-test</h1>
 
 <p>One install gets you standard testing tools for both the client and the server, including client-side test coverage under <a href="http://requirejs.org/"><code>requirejs</code></a> via <a href="http://blanketjs.org/"><code>blanket</code></a>.</p>
 
@@ -8,7 +10,16 @@
 <li>Includes core testing libraries: <a href="http://visionmedia.github.io/mocha/"><code>mocha</code></a>, <a href="http://sinonjs.org/"><code>sinon</code></a>, and <a href="http://chaijs.com/"><code>chai</code></a> available on the client and on the server</li>
 <li>dist/thehelp-test-harness.js to make it easy to test on the client side, whether in the browser or via <a href="https://github.com/kmiyashiro/grunt-mocha"><code>grunt-mocha</code></a></li>
 <li><code>WinstonTestHelper</code> to verify that calls were made as expected and/or prevent logs from hitting console</li>
+<li>Easy setup for <code>blanket</code> on the client-side, with some key tweaks to make it work seamlessly under <code>requirejs</code></li>
+<li>Support for reporting mocha test results to <a href="https://saucelabs.com">Sauce Labs</a></li>
+<li>If <a href="https://github.com/flatiron/winston"><code>winston</code></a> is installed, automatic setup of <code>winston</code> console logging transport both for the default logger and default collection.</li>
 </ul>
+
+<h2 id="supported-browsers">Supported browsers</h2>
+
+<p><a href="https://saucelabs.com"><img src="https://saucelabs.com/browser-matrix/thehelp-test.svg" alt="Sauce Test Status" title="" /></a></p>
+
+<p>Sadly, <code>chai</code>, the assertion library used in this project, <a href="https://github.com/chaijs/chai/issues/124">doesn't support IE8 (okay, maybe a little)</a>. Has been tested on as low as iOS 4.3, but <a href="http://caniuse.com/usage_table.php">usage is so low</a> for pre-6.0 versions that they are not part of the standard run.</p>
 
 <h2 id="setup">Setup</h2>
 
@@ -102,7 +113,7 @@ define(['thehelp-test', '../../../src/both/something'], function(test, something
 
 <h2 id="advanced-config">Advanced Config</h2>
 
-<p>You've got a few more options than just <code>files</code> and <code>mochaCss</code>. Here are the complete set of options:</p>
+<p>You've got a few more options than just <code>files</code> and <code>mochaCss</code> on the client side. Here are the complete set of options:</p>
 
 <pre><code>window.thehelp = {
   test: {
@@ -120,7 +131,7 @@ define(['thehelp-test', '../../../src/both/something'], function(test, something
     coverage: false
 
     // optional, defaults to false, auto-starting tests on load
-    waitToRun: true,
+    waitToRun: true
   }
 }
 </code></pre>
@@ -130,6 +141,20 @@ define(['thehelp-test', '../../../src/both/something'], function(test, something
 <h2 id="detailed-docs">Detailed Docs</h2>
 
 <p>Detailed docs be found at this project's GitHub Pages, thanks to <code>groc</code> and <code>thehelp-project</code>: <a href="http://thehelp.github.io/test/">http://thehelp.github.io/test/</a>. A good place to start is <a href="http://thehelp.github.io/test/src/client/thehelp-test/harness.html"><code>thehelp-test-harnest</code></a>.</p>
+
+<h2 id="contributing-changes">Contributing changes</h2>
+
+<p>The end-to-end tests under 'test/integration' will be your friend. :0) It will help you ensure that the client-side part of this library is working properly. Use <code>grunt connect:keepalive</code> to test it in your browser.</p>
+
+<p>Please cover as many browsers as you can, or use <code>grunt cross-browser</code> with your <a href="https://github.com/thehelp/client-project">Sauce Credentials in env.json</a>. When you have some changes ready, please submit a pull request with:</p>
+
+<ul>
+<li>Justification - why is this change worthwhile? Link to issues, use code samples, etc.</li>
+<li>Documentation changes for your code updates. Be sure to check the groc-generated HTML with <code>grunt doc</code></li>
+<li>A description of how you tested the change. Don't forget about the very-useful <code>npm link</code> command :0)</li>
+</ul>
+
+<p>I may ask you to use a <code>git rebase</code> to ensure that your commits are not interleaved with commits already in the history. And of course, make sure <code>grunt</code> completes successfully. :0)</p>
 
 <h2 id="license">License</h2>
 

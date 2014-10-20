@@ -1,0 +1,35 @@
+<!DOCTYPE html><html lang="en"><head><title>src/server/setup_winston</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/server/setup_winston"><meta name="groc-project-path" content="src/server/setup_winston.js"><meta name="groc-github-url" content="https://github.com/thehelp/test"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/thehelp/test/blob/master/src/server/setup_winston.js">src/server/setup_winston.js</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="winston">winston</h1></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>If <code>winston</code> installed, set up the console transport to the output we're looking for.</p></div></div><div class="code"><div class="wrapper"><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">winston</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;winston&#39;</span><span class="p">);</span>
+
+  <span class="kd">var</span> <span class="nx">addToDefaultLogger</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">transport</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">winston</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">winston</span><span class="p">.</span><span class="nx">transports</span><span class="p">.</span><span class="nx">Console</span><span class="p">);</span>
+    <span class="nx">winston</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">transport</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="kd">var</span> <span class="nx">addToDefaultCollection</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">transport</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">defaultOptions</span> <span class="o">=</span> <span class="nx">winston</span><span class="p">.</span><span class="nx">loggers</span><span class="p">.</span><span class="nx">options</span><span class="p">;</span>
+    <span class="nx">defaultOptions</span><span class="p">.</span><span class="nx">transports</span> <span class="o">=</span> <span class="nx">defaultOptions</span><span class="p">.</span><span class="nx">transports</span> <span class="o">||</span> <span class="p">[];</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">defaultOptions</span><span class="p">.</span><span class="nx">transports</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">max</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">defaultTransport</span> <span class="o">=</span> <span class="nx">defaultOptions</span><span class="p">.</span><span class="nx">transports</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">defaultTransport</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nx">winston</span><span class="p">.</span><span class="nx">transports</span><span class="p">.</span><span class="nx">Console</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">defaultOptions</span><span class="p">.</span><span class="nx">transports</span> <span class="o">=</span> <span class="nx">defaultOptions</span><span class="p">.</span><span class="nx">transports</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">i</span><span class="p">).</span><span class="nx">concat</span><span class="p">(</span>
+          <span class="nx">defaultOptions</span><span class="p">.</span><span class="nx">transports</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+        <span class="k">break</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nx">defaultOptions</span><span class="p">.</span><span class="nx">transports</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">transport</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="kd">var</span> <span class="nx">transport</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">winston</span><span class="p">.</span><span class="nx">transports</span><span class="p">.</span><span class="nx">Console</span><span class="p">({</span>
+    <span class="nx">colorize</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">level</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">THEHELP_TEST_LEVEL</span> <span class="o">||</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span>
+    <span class="nx">timestamp</span><span class="o">:</span> <span class="kc">true</span>
+  <span class="p">});</span>
+
+  <span class="nx">addToDefaultLogger</span><span class="p">(</span><span class="nx">transport</span><span class="p">);</span>
+  <span class="nx">addToDefaultCollection</span><span class="p">(</span><span class="nx">transport</span><span class="p">);</span>
+<span class="p">};</span></div></div></div></div></body></html>
