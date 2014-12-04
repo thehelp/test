@@ -83,7 +83,7 @@ And the HTML file hosting your tests can look like this:
         'test/unit/client/test_index',
         'test/unit/both/test_something',
       ],
-      mochaCss: '../../dist/mocha.css'
+      mochaCss: '../../node_modules/thehelp-test/dist/mocha.css'
     }
   };
 </script>
