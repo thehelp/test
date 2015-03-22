@@ -9,12 +9,14 @@ public
 
 db
 lib
+coverage
 
 .gitignore
 .npmignore
 
 *.sublime*
 
+build_sinon.sh
 Gruntfile.js
 result.html
 env.json
