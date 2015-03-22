@@ -6,6 +6,6 @@
     "sinon": "1.9.1"
   },
   "devDependencies": {
-    "requirejs": "2.1.14"
+    "requirejs": "2.1.16"
   }
 }
