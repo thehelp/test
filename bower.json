@@ -1,8 +1,8 @@
 {
   "name": "thehelp-test",
   "dependencies": {
-    "chai": "1.9.1",
-    "mocha": "1.21.4",
+    "chai": "2.1.2",
+    "mocha": "2.2.1",
     "sinon": "1.9.1"
   },
   "devDependencies": {
