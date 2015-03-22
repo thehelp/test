@@ -1,3 +1,9 @@
+## 3.4.0 (2015-03-21)
+
+* Major version updates: `chai` 1.9.1 to 2.1.2, `mocha` (client-only): 1.21.4 to 2.2.1
+* Note: `sinon` is still locked to `1.9.1` due to r.js optimization incompatibility. Aside: Seeing their struggles with module loaders is enough to make me want to move to browserify for all of my public client-side libraries. Will start researching...
+* Update dev dependencies
+
 ## 3.3.0 (2014-10-19)
 
 * If `winston` is installed, we now set up its console transport for the default collection (`winston.loggers.get()`) as well as for the default logger (`winston.info()`).
