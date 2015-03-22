@@ -71,7 +71,7 @@ internals.setupDist = function(config, grunt) {
     );
 
     contents = contents.replace(
-      '})();\n\n// bridge',
+      '})();\n// bridge',
       '})();\ndefine(\'blanket\', function() { return window.blanket; })\n// Bridge'
     );
 
