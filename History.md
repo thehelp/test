@@ -1,3 +1,7 @@
+## 3.4.1 (2015-03-21)
+
+* Fix: thehelp-test-coverage.js now properly sets blanket up. A new version of r.js changed the generated file such that the hack to manually insert a `define()` call was exposed for what it is... :0(
+
 ## 3.4.0 (2015-03-21)
 
 * Major version updates: `chai` 1.9.1 to 2.1.2, `mocha` (client-only): 1.21.4 to 2.2.1
