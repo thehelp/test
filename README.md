@@ -2,7 +2,7 @@
 
 # thehelp-test (deprecated)
 
-_I don't expect to make any more updates to this project, but by all means continue to use it if it helps you out! Also, let's talk if you'd like to jump in and help maintain it!_
+_I don't expect to make any more updates to this project, but by all means continue to use it if it helps you out! Also, let's talk if you'd like to jump in and help maintain it! https://blog.scottnonnenberg.com/the-state-of-thehelp/ _
 
 One install gets you standard testing tools for both the client and the server, including client-side test coverage under [`requirejs`](http://requirejs.org/) via [`blanket`](http://blanketjs.org/).
 
